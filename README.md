@@ -131,6 +131,10 @@ Provide a `data/sample/` folder with small example files so users can run quick 
   * Add unit tests for SoC propagation, cost functions and constraint handling.
   * Open issues for bugs / feature requests and send PRs with clear descriptions.
 
+## License & Contact
+
+  * **Author:** Ankit Kumar Singh
+  * **Email:** singhankit171819@gmail.com
 <!-- end list -->
 
 ```
