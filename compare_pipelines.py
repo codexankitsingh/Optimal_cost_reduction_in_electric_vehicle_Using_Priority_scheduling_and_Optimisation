@@ -211,24 +211,23 @@ def plot_fleet_size_effects(priority_results: List[Dict], fcfs_results: List[Dic
         print("⚠️ No data to plot fleet size effects — check pipeline outputs.")
         return
     
-    # Align and sort by fleet_size
-    # Truncate to smallest length (defensive)
-    min_len = min(len(priority_results), len(fcfs_results))
-    priority_results = priority_results[:min_len]
-    fcfs_results = fcfs_results[:min_len]
-    
     # If fleet_size missing, fallback to index
     for idx, r in enumerate(priority_results):
         r.setdefault('fleet_size', idx)
     for idx, r in enumerate(fcfs_results):
         r.setdefault('fleet_size', idx)
     
-    # Sort results by fleet_size
-    priority_results = sorted(priority_results, key=lambda r: r.get('fleet_size', 0))
-    fcfs_results = sorted(fcfs_results, key=lambda r: r.get('fleet_size', 0))
+    # Create dictionaries mapping fleet_size -> result for both pipelines
+    # This ensures we match results by fleet_size, not by index
+    priority_by_fleet = {r.get('fleet_size', i): r for i, r in enumerate(priority_results)}
+    fcfs_by_fleet = {r.get('fleet_size', i): r for i, r in enumerate(fcfs_results)}
     
-    # Build fleet_sizes list from priority_results (assumes both are aligned after sort)
-    fleet_sizes = [r.get('fleet_size', i) for i, r in enumerate(priority_results)]
+    # Find intersection of fleet_sizes that exist in both pipelines
+    common_fleet_sizes = sorted(set(priority_by_fleet.keys()) & set(fcfs_by_fleet.keys()))
+    
+    if not common_fleet_sizes:
+        print("⚠️ No common fleet sizes found between priority and FCFS results — cannot plot.")
+        return
     
     metrics_to_plot = {
         'avg_user_satisfaction': 'Average User Satisfaction vs Fleet Size',
@@ -239,29 +238,33 @@ def plot_fleet_size_effects(priority_results: List[Dict], fcfs_results: List[Dic
     os.makedirs(output_dir, exist_ok=True)
     
     for metric_key, title in metrics_to_plot.items():
-        priority_vals = [r.get(metric_key, np.nan) for r in priority_results]
-        fcfs_vals = [r.get(metric_key, np.nan) for r in fcfs_results]
+        # Extract values matched by fleet_size (not by index)
+        priority_vals = []
+        fcfs_vals = []
+        fleet_sizes_valid = []
         
-        # Build valid pairs (both pipelines must have non-NaN)
-        valid_data = []
-        for fs, p, f in zip(fleet_sizes, priority_vals, fcfs_vals):
-            if not np.isnan(p) and not np.isnan(f):
-                valid_data.append((fs, p, f))
+        for fs in common_fleet_sizes:
+            p_val = priority_by_fleet[fs].get(metric_key, np.nan)
+            f_val = fcfs_by_fleet[fs].get(metric_key, np.nan)
+            
+            # Only include if both values are valid (non-NaN)
+            if not np.isnan(p_val) and not np.isnan(f_val):
+                fleet_sizes_valid.append(fs)
+                priority_vals.append(p_val)
+                fcfs_vals.append(f_val)
         
-        if not valid_data:
+        if not fleet_sizes_valid:
             print(f"⚠️ No valid data for {metric_key} — skipping plot.")
             continue
         
-        fleet_sizes_valid, priority_vals_valid, fcfs_vals_valid = zip(*valid_data)
-        
         # Debug print (optional - helpful when diagnosing empty/flat plots)
         # Uncomment the next line if you need to debug values:
-        # print(f"[DEBUG] {metric_key} data points: {list(zip(fleet_sizes_valid, priority_vals_valid, fcfs_vals_valid))}")
+        # print(f"[DEBUG] {metric_key} data points: {list(zip(fleet_sizes_valid, priority_vals, fcfs_vals))}")
         
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        ax.plot(fleet_sizes_valid, priority_vals_valid, marker='o', linewidth=2, label='Priority Scheduling')
-        ax.plot(fleet_sizes_valid, fcfs_vals_valid, marker='s', linewidth=2, label='FCFS Scheduling')
+        ax.plot(fleet_sizes_valid, priority_vals, marker='o', linewidth=2, label='Priority Scheduling')
+        ax.plot(fleet_sizes_valid, fcfs_vals, marker='s', linewidth=2, label='FCFS Scheduling')
         
         ax.set_xlabel('Fleet Size (Number of Chargers)', fontsize=12)
         ax.set_ylabel(metric_key.replace('_', ' ').title(), fontsize=12)
