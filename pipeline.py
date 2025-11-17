@@ -782,7 +782,7 @@ def run_ga(evs, T, delta_t,
     # Aim: mutate ~1 gene per EV per generation on average or a small percent of genes.
     num_variable_genes = sum(0 if fixed_mask[idx] else 1 for idx in range(M*T))
     indpb = min(0.05, 1.0 / max(1, T))   # e.g., for T=48 -> ~0.0208
-    
+
     def safe_mutate(ind):
         tools.mutPolynomialBounded(ind, low=safe_low, up=safe_up, eta=eta_m, indpb=indpb)
         for idx in range(M*T):

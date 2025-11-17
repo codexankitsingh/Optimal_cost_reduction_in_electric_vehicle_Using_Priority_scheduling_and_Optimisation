@@ -23,7 +23,7 @@ from typing import Dict, List, Tuple
 import re
 
 def extract_metrics_from_output(output: str) -> Dict[str, float]:
-    """Extract metrics from pipeline output."""
+    """Extract metrics from pipeline output. Tolerant to small differences in printed labels."""
     metrics = {}
     
     # Average net energy cost per EV
@@ -37,27 +37,36 @@ def extract_metrics_from_output(output: str) -> Dict[str, float]:
         metrics['avg_battery_degradation_cost'] = float(match.group(1))
     
     # Grid load variance
-    match = re.search(r'Grid load variance \(raw F3\):\s*([\d\.\+\-eE]+)', output)
+    match = re.search(r'Grid load variance\s*\(raw F3\):\s*([\d\.\+\-eE]+)', output, flags=re.I)
     if match:
         metrics['grid_load_variance'] = float(match.group(1))
     
     # Average user satisfaction
-    match = re.search(r'Average user satisfaction:\s*([\d\.\+\-eE]+)', output)
+    match = re.search(r'Average user satisfaction:\s*([\d\.\+\-eE]+)', output, flags=re.I)
     if match:
         metrics['avg_user_satisfaction'] = float(match.group(1))
     
-    # Average waiting time
-    match = re.search(r'Average waiting time \(hours\):\s*([\d\.\+\-eE]+)', output)
-    if match:
-        metrics['avg_waiting_time'] = float(match.group(1))
+    # Average waiting time: try a few possible printed labels
+    match_all = re.search(r'Average waiting time \(all EVs in pool\):\s*([\d\.\+\-eE]+)\s*hours', output, flags=re.I)
+    match_adm = re.search(r'Average waiting time \(admitted EVs\):\s*([\d\.\+\-eE]+)\s*hours', output, flags=re.I)
+    match_generic = re.search(r'Average waiting time.*?:\s*([\d\.\+\-eE]+)\s*hours', output, flags=re.I)
+    if match_all:
+        metrics['avg_waiting_time'] = float(match_all.group(1))
+        metrics['avg_waiting_time_all'] = float(match_all.group(1))
+    elif match_adm:
+        metrics['avg_waiting_time_admitted'] = float(match_adm.group(1))
+        # set generic to admitted if nothing else
+        metrics['avg_waiting_time'] = float(match_adm.group(1))
+    elif match_generic:
+        metrics['avg_waiting_time'] = float(match_generic.group(1))
     
     # Fairness (Gini)
-    match = re.search(r'Fairness \(Gini on delivered kWh\):\s*([\d\.\+\-eE]+)', output)
+    match = re.search(r'Fairness\s*\(Gini on delivered kWh\):\s*([\d\.\+\-eE]+)', output, flags=re.I)
     if match:
         metrics['fairness_gini'] = float(match.group(1))
     
-    # Also extract objective J
-    match = re.search(r'Objective J \(normalized weighted\):\s*([\d\.\+\-eE]+)', output)
+    # Objective J
+    match = re.search(r'Objective J\s*\(normalized weighted\):\s*([\d\.\+\-eE]+)', output, flags=re.I)
     if match:
         metrics['objective_J'] = float(match.group(1))
     
@@ -77,6 +86,10 @@ def run_pipeline(script_path: str, ev_file: str, chargers: int) -> Dict[str, flo
             return {}
         
         metrics = extract_metrics_from_output(output)
+        # annotate missing fields with NaN to avoid later KeyErrors
+        for key in ['avg_net_energy_cost', 'avg_battery_degradation_cost', 'grid_load_variance',
+                    'avg_user_satisfaction', 'avg_waiting_time', 'fairness_gini', 'objective_J']:
+            metrics.setdefault(key, float('nan'))
         return metrics
     except subprocess.TimeoutExpired:
         print(f"Timeout running {script_path}")
@@ -91,8 +104,7 @@ def run_weight_experiment(script_path: str, ev_file: str, chargers: int,
     results = []
     for i, config in enumerate(weight_configs):
         print(f"\nWeight config {i+1}/{len(weight_configs)}: {config}")
-        # Note: Would need to add CLI args for weights to pipeline scripts
-        # For now, just run with default
+        # NOTE: pipelines must accept CLI args to override weights; if they don't, this runs defaults
         metrics = run_pipeline(script_path, ev_file, chargers)
         metrics['config_name'] = f"W{config.get('w1', 0.25)}-{config.get('w2', 0.25)}-{config.get('w3', 0.25)}-{config.get('w4', 0.25)}"
         results.append(metrics)
@@ -100,10 +112,10 @@ def run_weight_experiment(script_path: str, ev_file: str, chargers: int,
 
 def run_fleet_size_experiment(script_path: str, ev_file: str, 
                                fleet_sizes: List[int]) -> List[Dict[str, float]]:
-    """Run pipeline with different fleet sizes."""
+    """Run pipeline with different fleet sizes (chargers)."""
     results = []
     for chargers in fleet_sizes:
-        print(f"\nFleet size: {chargers}")
+        print(f"\nFleet size (chargers): {chargers}")
         metrics = run_pipeline(script_path, ev_file, chargers)
         metrics['fleet_size'] = chargers
         results.append(metrics)
@@ -114,7 +126,6 @@ def plot_comparison(priority_metrics: Dict[str, float], fcfs_metrics: Dict[str, 
     """Create comparison plots."""
     os.makedirs(output_dir, exist_ok=True)
     
-    # Prepare data
     metrics_to_compare = {
         'avg_net_energy_cost': 'Average Net Energy Cost per EV',
         'avg_battery_degradation_cost': 'Average Battery Degradation Cost per EV',
@@ -125,32 +136,26 @@ def plot_comparison(priority_metrics: Dict[str, float], fcfs_metrics: Dict[str, 
         'objective_J': 'Objective J (normalized)'
     }
     
-    # Create comparison bar chart
     categories = []
     priority_values = []
     fcfs_values = []
     
     for metric_key, metric_label in metrics_to_compare.items():
-        if metric_key in priority_metrics and metric_key in fcfs_metrics:
+        if not (np.isnan(priority_metrics.get(metric_key, np.nan)) or np.isnan(fcfs_metrics.get(metric_key, np.nan))):
             categories.append(metric_label)
-            priority_values.append(priority_metrics[metric_key])
-            fcfs_values.append(fcfs_metrics[metric_key])
+            priority_values.append(priority_metrics.get(metric_key, 0.0))
+            fcfs_values.append(fcfs_metrics.get(metric_key, 0.0))
     
     if not categories:
         print("No comparable metrics found")
         return
     
-    # Normalize for better visualization
-    def normalize(values):
-        max_val = max(max(v, 1) for v in values)
-        return [v / max_val for v in values]
-    
     x = np.arange(len(categories))
     width = 0.35
     
     fig, ax = plt.subplots(figsize=(14, 8))
-    ax.bar(x - width/2, priority_values, width, label='Priority Scheduling', color='#1f77b4')
-    ax.bar(x + width/2, fcfs_values, width, label='FCFS Scheduling', color='#ff7f0e')
+    ax.bar(x - width/2, priority_values, width, label='Priority Scheduling')
+    ax.bar(x + width/2, fcfs_values, width, label='FCFS Scheduling')
     
     ax.set_xlabel('Metrics', fontsize=12)
     ax.set_ylabel('Values', fontsize=12)
@@ -169,20 +174,22 @@ def plot_comparison(priority_metrics: Dict[str, float], fcfs_metrics: Dict[str, 
 def plot_weight_effects(priority_results: List[Dict], fcfs_results: List[Dict], output_dir: str):
     """Plot effect of weight preferences."""
     if not priority_results or not fcfs_results:
+        print("No weight experiment results to plot.")
         return
     
-    # Extract key metrics
     metrics_to_plot = {
         'avg_user_satisfaction': 'User Satisfaction',
         'objective_J': 'Objective J'
     }
     
+    os.makedirs(output_dir, exist_ok=True)
+    
     for metric_key, metric_label in metrics_to_plot.items():
         fig, ax = plt.subplots(figsize=(10, 6))
         
         x = range(len(priority_results))
-        priority_vals = [r.get(metric_key, 0) for r in priority_results]
-        fcfs_vals = [r.get(metric_key, 0) for r in fcfs_results]
+        priority_vals = [r.get(metric_key, np.nan) for r in priority_results]
+        fcfs_vals = [r.get(metric_key, np.nan) for r in fcfs_results]
         
         ax.plot(x, priority_vals, marker='o', label='Priority', linewidth=2)
         ax.plot(x, fcfs_vals, marker='s', label='FCFS', linewidth=2)
@@ -199,27 +206,63 @@ def plot_weight_effects(priority_results: List[Dict], fcfs_results: List[Dict], 
         plt.close()
 
 def plot_fleet_size_effects(priority_results: List[Dict], fcfs_results: List[Dict], output_dir: str):
-    """Plot effect of fleet sizes."""
+    """Plot effect of fleet sizes (number of chargers) on satisfaction, waiting time, and fairness."""
     if not priority_results or not fcfs_results:
+        print("⚠️ No data to plot fleet size effects — check pipeline outputs.")
         return
     
-    # Extract fleet sizes
+    # Align and sort by fleet_size
+    # Truncate to smallest length (defensive)
+    min_len = min(len(priority_results), len(fcfs_results))
+    priority_results = priority_results[:min_len]
+    fcfs_results = fcfs_results[:min_len]
+    
+    # If fleet_size missing, fallback to index
+    for idx, r in enumerate(priority_results):
+        r.setdefault('fleet_size', idx)
+    for idx, r in enumerate(fcfs_results):
+        r.setdefault('fleet_size', idx)
+    
+    # Sort results by fleet_size
+    priority_results = sorted(priority_results, key=lambda r: r.get('fleet_size', 0))
+    fcfs_results = sorted(fcfs_results, key=lambda r: r.get('fleet_size', 0))
+    
+    # Build fleet_sizes list from priority_results (assumes both are aligned after sort)
     fleet_sizes = [r.get('fleet_size', i) for i, r in enumerate(priority_results)]
     
     metrics_to_plot = {
-        'avg_user_satisfaction': 'User Satisfaction vs Fleet Size',
-        'avg_waiting_time': 'Waiting Time vs Fleet Size',
-        'fairness_gini': 'Fairness vs Fleet Size'
+        'avg_user_satisfaction': 'Average User Satisfaction vs Fleet Size',
+        'avg_waiting_time': 'Average Waiting Time vs Fleet Size',
+        'fairness_gini': 'Fairness (Gini Coefficient) vs Fleet Size'
     }
     
+    os.makedirs(output_dir, exist_ok=True)
+    
     for metric_key, title in metrics_to_plot.items():
+        priority_vals = [r.get(metric_key, np.nan) for r in priority_results]
+        fcfs_vals = [r.get(metric_key, np.nan) for r in fcfs_results]
+        
+        # Build valid pairs (both pipelines must have non-NaN)
+        valid_data = []
+        for fs, p, f in zip(fleet_sizes, priority_vals, fcfs_vals):
+            if not np.isnan(p) and not np.isnan(f):
+                valid_data.append((fs, p, f))
+        
+        if not valid_data:
+            print(f"⚠️ No valid data for {metric_key} — skipping plot.")
+            continue
+        
+        fleet_sizes_valid, priority_vals_valid, fcfs_vals_valid = zip(*valid_data)
+        
+        # Debug print (optional - helpful when diagnosing empty/flat plots)
+        # Uncomment the next line if you need to debug values:
+        # print(f"[DEBUG] {metric_key} data points: {list(zip(fleet_sizes_valid, priority_vals_valid, fcfs_vals_valid))}")
+        
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        priority_vals = [r.get(metric_key, 0) for r in priority_results]
-        fcfs_vals = [r.get(metric_key, 0) for r in fcfs_results]
+        ax.plot(fleet_sizes_valid, priority_vals_valid, marker='o', linewidth=2, label='Priority Scheduling')
+        ax.plot(fleet_sizes_valid, fcfs_vals_valid, marker='s', linewidth=2, label='FCFS Scheduling')
         
-        ax.plot(fleet_sizes, priority_vals, marker='o', label='Priority', linewidth=2)
-        ax.plot(fleet_sizes, fcfs_vals, marker='s', label='FCFS', linewidth=2)
         ax.set_xlabel('Fleet Size (Number of Chargers)', fontsize=12)
         ax.set_ylabel(metric_key.replace('_', ' ').title(), fontsize=12)
         ax.set_title(title, fontsize=14, fontweight='bold')
@@ -229,7 +272,7 @@ def plot_fleet_size_effects(priority_results: List[Dict], fcfs_results: List[Dic
         plt.tight_layout()
         output_path = os.path.join(output_dir, f'fleet_effect_{metric_key}.png')
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
-        print(f"Saved fleet effect plot to: {output_path}")
+        print(f"✅ Saved fixed fleet effect plot to: {output_path}")
         plt.close()
 
 def main():
@@ -244,7 +287,7 @@ def main():
                        help='Run weight and fleet size experiments')
     args = parser.parse_args()
     
-    # Check if files exist
+    # Check scripts and EV file exist
     if not os.path.exists('pipeline.py'):
         print("Error: pipeline.py not found")
         return
@@ -282,8 +325,12 @@ def main():
     print("\nDifferences:")
     common_keys = set(priority_metrics.keys()) & set(fcfs_metrics.keys())
     for key in common_keys:
-        diff = fcfs_metrics[key] - priority_metrics[key]
-        pct_diff = (diff / priority_metrics[key] * 100) if priority_metrics[key] != 0 else 0
+        a = priority_metrics.get(key, np.nan)
+        b = fcfs_metrics.get(key, np.nan)
+        if np.isnan(a) or np.isnan(b):
+            continue
+        diff = b - a
+        pct_diff = (diff / a * 100) if a != 0 else float('nan')
         print(f"  {key}: {diff:.6f} ({pct_diff:+.2f}%)")
     
     # Create plots

@@ -493,7 +493,7 @@ def run_ga(evs, T, delta_t,
     # FIX B: Per-gene mutation probability. Use per-slot or small-percent baseline instead of 1/(huge genome).
     num_variable_genes = sum(0 if fixed_mask[idx] else 1 for idx in range(M*T))
     indpb = min(0.05, 1.0 / max(1, T))   # e.g., for T=48 -> ~0.0208
-    
+
     def safe_mutate(ind):
         tools.mutPolynomialBounded(ind, low=safe_low, up=safe_up, eta=eta_m, indpb=indpb)
         for idx in range(M*T):
@@ -804,7 +804,44 @@ def main():
     M = len(admitted_evs)
     avg_cost_per_ev = (result['F1'] / M) if M > 0 else float('nan')
     avg_deg_per_ev = (result['F2'] / M) if M > 0 else float('nan')
-    avg_user_satisfaction = (sum(result['Si_list']) / M) if M > 0 else float('nan')
+    
+    # Calculate satisfaction for ALL EVs in pool (not just admitted)
+    # For admitted EVs: use Si from schedule
+    # For non-admitted EVs: calculate Si assuming no charging (SoC_T = SoC_init)
+    admitted_ids = {ev['id'] for ev in admitted_evs}
+    admitted_si_map = {admitted_evs[i]['id']: result['Si_list'][i] for i in range(len(admitted_evs))}
+    
+    fleet_satisfaction_list = []
+    for ev in ev_pool:
+        ev_id = ev['id']
+        if ev_id in admitted_ids:
+            # Admitted: use satisfaction from schedule
+            fleet_satisfaction_list.append(admitted_si_map[ev_id])
+        else:
+            # Not admitted: calculate satisfaction assuming no charging
+            SoC_init = ev['SoC_init']
+            SoC_max = ev['SoC_max']
+            SoC_T = SoC_init  # No charging received
+            Ereq = max(0.0, (SoC_max - SoC_init) * ev['Ecap'])
+            Tstay = max(ev.get('T_stay', 1e-9), 1e-9)
+            preq = (Ereq / Tstay) if Tstay > 0 else (float('inf') if Ereq > 0 else 0.0)
+            pref = ev.get('P_ref', ev.get('R_i', 7.0))
+            if pref is None or pref <= 0:
+                pref = 7.0
+            phi_i = min(1.0, preq / pref)
+            if SoC_T >= SoC_max:
+                delta_i = 0.0
+            else:
+                denom = (SoC_max - SoC_init)
+                delta_i = (SoC_max - SoC_T) / denom if denom > 0 else 1.0
+                delta_i = max(0.0, delta_i)
+            Si = max(0.0, 1.0 - phi_i * delta_i)
+            fleet_satisfaction_list.append(Si)
+    
+    # Average satisfaction for admitted EVs only (for backward compatibility)
+    avg_user_satisfaction_admitted = (sum(result['Si_list']) / M) if M > 0 else float('nan')
+    # Average satisfaction for all EVs in pool (fleet-wide)
+    avg_user_satisfaction = (sum(fleet_satisfaction_list) / len(fleet_satisfaction_list)) if fleet_satisfaction_list else float('nan')
 
     # Average waiting time and delivered energy
     # For FCFS: waiting time is 0 for admitted EVs (they're admitted at t=0)
@@ -830,6 +867,28 @@ def main():
         wait_hours.append(wait)
 
     avg_wait_hours = (sum(wait_hours) / len(wait_hours)) if wait_hours else float('nan')
+    
+    # Compute fleet-wide waiting time for FCFS
+    # Admitted EVs: waiting time = 0 (admitted at t=0)
+    # Non-admitted EVs: waiting time = their entire stay duration (never get served)
+    admitted_ids = {ev['id'] for ev in admitted_evs}
+    fleet_wait_times = []
+    for ev in ev_pool:
+        ev_id = ev['id']
+        if ev_id in admitted_ids:
+            # Admitted: no waiting time
+            fleet_wait_times.append(0.0)
+        else:
+            # Not admitted: wait entire stay duration
+            T_arr_idx = ev.get('T_arr_idx', 0)
+            T_dep_idx = ev.get('T_dep_idx', None)
+            if T_dep_idx is None:
+                T_stay = ev.get('T_stay', 0.0)
+                wait_duration = T_stay
+            else:
+                wait_duration = (T_dep_idx - T_arr_idx) * delta_t
+            fleet_wait_times.append(wait_duration)
+    avg_wait_all = (sum(fleet_wait_times) / len(fleet_wait_times)) if fleet_wait_times else 0.0
 
     # Gini coefficient
     def gini(values):
@@ -851,8 +910,10 @@ def main():
     print("Average net energy cost per EV:", avg_cost_per_ev)
     print("Average battery degradation cost per EV:", avg_deg_per_ev)
     print("Grid load variance (raw F3):", result['F3'])
-    print("Average user satisfaction:", avg_user_satisfaction)
-    print("Average waiting time (hours):", avg_wait_hours)
+    print(f"Average user satisfaction (admitted EVs): {avg_user_satisfaction_admitted:.4f}")
+    print(f"Average user satisfaction (all EVs in pool): {avg_user_satisfaction:.4f}")
+    print(f"Average waiting time (admitted EVs): {avg_wait_hours:.3f} hours")
+    print(f"Average waiting time (all EVs in pool): {avg_wait_all:.3f} hours")
     print("Fairness (Gini on delivered kWh):", gini_energy)
 
     # Save best schedule
