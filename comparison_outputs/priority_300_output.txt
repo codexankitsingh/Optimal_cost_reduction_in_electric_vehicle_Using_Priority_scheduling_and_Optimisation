@@ -1,0 +1,749 @@
+Loaded 300 EVs from evs_300.csv
+
+=== Stage-I Time-Series Simulation ===
+Admitted at t=0: 0 EVs
+Waiting times computed for all 300 EVs
+Average waiting time (all EVs): 4.797 hours
+
+--- First admitted EVs (t=0) ---
+No EVs admitted at t=0
+
+--- Scheduling order (by first admit slot) ---
+EV209: first admitted at slot t=12
+EV195: first admitted at slot t=14
+EV253: first admitted at slot t=14
+EV1: first admitted at slot t=16
+EV119: first admitted at slot t=16
+EV180: first admitted at slot t=16
+EV21: first admitted at slot t=17
+EV17: first admitted at slot t=18
+EV50: first admitted at slot t=18
+EV139: first admitted at slot t=18
+EV151: first admitted at slot t=18
+EV47: first admitted at slot t=19
+EV298: first admitted at slot t=19
+EV29: first admitted at slot t=20
+EV59: first admitted at slot t=20
+EV131: first admitted at slot t=20
+EV205: first admitted at slot t=20
+EV165: first admitted at slot t=22
+EV169: first admitted at slot t=22
+EV147: first admitted at slot t=23
+EV153: first admitted at slot t=23
+EV177: first admitted at slot t=23
+EV230: first admitted at slot t=23
+EV67: first admitted at slot t=24
+EV77: first admitted at slot t=24
+EV174: first admitted at slot t=24
+EV252: first admitted at slot t=24
+EV269: first admitted at slot t=24
+EV45: first admitted at slot t=25
+EV155: first admitted at slot t=25
+EV13: first admitted at slot t=27
+EV187: first admitted at slot t=27
+EV172: first admitted at slot t=31
+EV270: first admitted at slot t=32
+EV113: first admitted at slot t=33
+EV127: first admitted at slot t=34
+EV140: first admitted at slot t=34
+EV216: first admitted at slot t=34
+EV196: first admitted at slot t=36
+EV204: first admitted at slot t=36
+EV283: first admitted at slot t=36
+EV56: first admitted at slot t=37
+EV85: first admitted at slot t=37
+EV15: first admitted at slot t=39
+EV41: first admitted at slot t=39
+EV102: first admitted at slot t=39
+EV71: first admitted at slot t=40
+EV266: first admitted at slot t=40
+EV62: first admitted at slot t=41
+EV95: first admitted at slot t=41
+EV111: first admitted at slot t=42
+EV178: first admitted at slot t=42
+EV79: first admitted at slot t=43
+EV300: first admitted at slot t=43
+EV37: first admitted at slot t=44
+EV249: first admitted at slot t=44
+EV54: first admitted at slot t=45
+EV63: first admitted at slot t=45
+EV227: first admitted at slot t=45
+EV254: first admitted at slot t=45
+EV83: first admitted at slot t=46
+EV150: first admitted at slot t=46
+EV246: first admitted at slot t=46
+EV130: first admitted at slot t=47
+EV181: first admitted at slot t=47
+EV2: NOT ADMITTED
+EV3: NOT ADMITTED
+EV4: NOT ADMITTED
+EV5: NOT ADMITTED
+EV6: NOT ADMITTED
+EV7: NOT ADMITTED
+EV8: NOT ADMITTED
+EV9: NOT ADMITTED
+EV10: NOT ADMITTED
+EV11: NOT ADMITTED
+EV12: NOT ADMITTED
+EV14: NOT ADMITTED
+EV16: NOT ADMITTED
+EV18: NOT ADMITTED
+EV19: NOT ADMITTED
+EV20: NOT ADMITTED
+EV22: NOT ADMITTED
+EV23: NOT ADMITTED
+EV24: NOT ADMITTED
+EV25: NOT ADMITTED
+EV26: NOT ADMITTED
+EV27: NOT ADMITTED
+EV28: NOT ADMITTED
+EV30: NOT ADMITTED
+EV31: NOT ADMITTED
+EV32: NOT ADMITTED
+EV33: NOT ADMITTED
+EV34: NOT ADMITTED
+EV35: NOT ADMITTED
+EV36: NOT ADMITTED
+EV38: NOT ADMITTED
+EV39: NOT ADMITTED
+EV40: NOT ADMITTED
+EV42: NOT ADMITTED
+EV43: NOT ADMITTED
+EV44: NOT ADMITTED
+EV46: NOT ADMITTED
+EV48: NOT ADMITTED
+EV49: NOT ADMITTED
+EV51: NOT ADMITTED
+EV52: NOT ADMITTED
+EV53: NOT ADMITTED
+EV55: NOT ADMITTED
+EV57: NOT ADMITTED
+EV58: NOT ADMITTED
+EV60: NOT ADMITTED
+EV61: NOT ADMITTED
+EV64: NOT ADMITTED
+EV65: NOT ADMITTED
+EV66: NOT ADMITTED
+EV68: NOT ADMITTED
+EV69: NOT ADMITTED
+EV70: NOT ADMITTED
+EV72: NOT ADMITTED
+EV73: NOT ADMITTED
+EV74: NOT ADMITTED
+EV75: NOT ADMITTED
+EV76: NOT ADMITTED
+EV78: NOT ADMITTED
+EV80: NOT ADMITTED
+EV81: NOT ADMITTED
+EV82: NOT ADMITTED
+EV84: NOT ADMITTED
+EV86: NOT ADMITTED
+EV87: NOT ADMITTED
+EV88: NOT ADMITTED
+EV89: NOT ADMITTED
+EV90: NOT ADMITTED
+EV91: NOT ADMITTED
+EV92: NOT ADMITTED
+EV93: NOT ADMITTED
+EV94: NOT ADMITTED
+EV96: NOT ADMITTED
+EV97: NOT ADMITTED
+EV98: NOT ADMITTED
+EV99: NOT ADMITTED
+EV100: NOT ADMITTED
+EV101: NOT ADMITTED
+EV103: NOT ADMITTED
+EV104: NOT ADMITTED
+EV105: NOT ADMITTED
+EV106: NOT ADMITTED
+EV107: NOT ADMITTED
+EV108: NOT ADMITTED
+EV109: NOT ADMITTED
+EV110: NOT ADMITTED
+EV112: NOT ADMITTED
+EV114: NOT ADMITTED
+EV115: NOT ADMITTED
+EV116: NOT ADMITTED
+EV117: NOT ADMITTED
+EV118: NOT ADMITTED
+EV120: NOT ADMITTED
+EV121: NOT ADMITTED
+EV122: NOT ADMITTED
+EV123: NOT ADMITTED
+EV124: NOT ADMITTED
+EV125: NOT ADMITTED
+EV126: NOT ADMITTED
+EV128: NOT ADMITTED
+EV129: NOT ADMITTED
+EV132: NOT ADMITTED
+EV133: NOT ADMITTED
+EV134: NOT ADMITTED
+EV135: NOT ADMITTED
+EV136: NOT ADMITTED
+EV137: NOT ADMITTED
+EV138: NOT ADMITTED
+EV141: NOT ADMITTED
+EV142: NOT ADMITTED
+EV143: NOT ADMITTED
+EV144: NOT ADMITTED
+EV145: NOT ADMITTED
+EV146: NOT ADMITTED
+EV148: NOT ADMITTED
+EV149: NOT ADMITTED
+EV152: NOT ADMITTED
+EV154: NOT ADMITTED
+EV156: NOT ADMITTED
+EV157: NOT ADMITTED
+EV158: NOT ADMITTED
+EV159: NOT ADMITTED
+EV160: NOT ADMITTED
+EV161: NOT ADMITTED
+EV162: NOT ADMITTED
+EV163: NOT ADMITTED
+EV164: NOT ADMITTED
+EV166: NOT ADMITTED
+EV167: NOT ADMITTED
+EV168: NOT ADMITTED
+EV170: NOT ADMITTED
+EV171: NOT ADMITTED
+EV173: NOT ADMITTED
+EV175: NOT ADMITTED
+EV176: NOT ADMITTED
+
+--- GA Scheduling Scope: FULL (entire EV pool) ---
+GA will schedule all 300 EVs in the pool
+DEBUG: initial population fitness validity counts: 100/100
+GA start: pop_size=100, ngen=200, M=300, T=48, indpb=0.020833
+Initial best J = 0.00357145
+DEBUG Gen 1: invalid_inds_count=100
+Gen 1 improved best J -> -0.00161362 (mean: 0.12585277, std: 0.11919912, diversity: 247.9954)
+DEBUG Gen 2: invalid_inds_count=100
+Gen 2 improved best J -> -0.00219588 (mean: 0.06215358, std: 0.05632058, diversity: 249.4562)
+DEBUG Gen 3: invalid_inds_count=100
+Gen 3 improved best J -> -0.00237716 (mean: 0.03039622, std: 0.03128391, diversity: 233.1998)
+DEBUG Gen 4: invalid_inds_count=100
+Gen 4 improved best J -> -0.00327538 (mean: 0.01629061, std: 0.02594747, diversity: 207.9264)
+DEBUG Gen 5: invalid_inds_count=100
+Gen 5 best J -0.00327538 (mean: 0.01202403, std: 0.02083017, diversity: 192.5761, no improve: 1)
+Gen 6 improved best J -> -0.00336944 (mean: 0.00692812, std: 0.01490235, diversity: 150.4576)
+Gen 7 improved best J -> -0.00337568 (mean: 0.00066598, std: 0.00879590, diversity: 133.3348)
+Gen 9 improved best J -> -0.00376306 (mean: -0.00145067, std: 0.00242155, diversity: 107.3174)
+DEBUG Gen 10: invalid_inds_count=100
+Gen 10 improved best J -> -0.00393034 (mean: -0.00222912, std: 0.00164791, diversity: 95.0460)
+Gen 12 improved best J -> -0.00404205 (mean: -0.00279068, std: 0.00155682, diversity: 88.7301)
+Gen 13 improved best J -> -0.00411783 (mean: -0.00287970, std: 0.00179513, diversity: 78.7566)
+Gen 14 improved best J -> -0.00421941 (mean: -0.00349487, std: 0.00099179, diversity: 76.5770)
+Gen 15 improved best J -> -0.00425045 (mean: -0.00383825, std: 0.00041502, diversity: 63.3279)
+Gen 16 improved best J -> -0.00437985 (mean: -0.00402087, std: 0.00020220, diversity: 54.2044)
+Gen 17 improved best J -> -0.00472225 (mean: -0.00417330, std: 0.00016059, diversity: 55.0202)
+Gen 18 improved best J -> -0.00473877 (mean: -0.00421617, std: 0.00060428, diversity: 58.4933)
+Gen 19 improved best J -> -0.00492631 (mean: -0.00447370, std: 0.00014738, diversity: 56.4606)
+DEBUG Gen 20: invalid_inds_count=100
+Gen 20 best J -0.00492631 (mean: -0.00459757, std: 0.00017152, diversity: 54.2778, no improve: 1)
+Gen 21 improved best J -> -0.00512101 (mean: -0.00472229, std: 0.00017709, diversity: 55.0463)
+Gen 23 improved best J -> -0.00524261 (mean: -0.00479091, std: 0.00059457, diversity: 50.3663)
+Gen 24 improved best J -> -0.00532272 (mean: -0.00495581, std: 0.00042925, diversity: 51.1046)
+Gen 25 improved best J -> -0.00539789 (mean: -0.00493313, std: 0.00071948, diversity: 50.7176)
+Gen 26 improved best J -> -0.00541447 (mean: -0.00454735, std: 0.00279738, diversity: 47.8226)
+Gen 27 improved best J -> -0.00555997 (mean: -0.00506850, std: 0.00065969, diversity: 47.1223)
+Gen 28 improved best J -> -0.00566585 (mean: -0.00511374, std: 0.00071837, diversity: 43.6756)
+Gen 29 improved best J -> -0.00566617 (mean: -0.00527686, std: 0.00058458, diversity: 39.7157)
+DEBUG Gen 30: invalid_inds_count=100
+Gen 30 best J -0.00566617 (mean: -0.00541856, std: 0.00026704, diversity: 40.0186, no improve: 1)
+Gen 31 improved best J -> -0.00570115 (mean: -0.00549831, std: 0.00025812, diversity: 38.8549)
+Gen 32 improved best J -> -0.00579299 (mean: -0.00554202, std: 0.00021183, diversity: 34.2063)
+Gen 33 improved best J -> -0.00582376 (mean: -0.00560506, std: 0.00026656, diversity: 31.3662)
+Gen 34 improved best J -> -0.00589028 (mean: -0.00559972, std: 0.00038154, diversity: 29.8167)
+Gen 35 improved best J -> -0.00595023 (mean: -0.00561419, std: 0.00056684, diversity: 28.4809)
+Gen 36 improved best J -> -0.00595934 (mean: -0.00574774, std: 0.00026532, diversity: 25.6798)
+Gen 37 improved best J -> -0.00602289 (mean: -0.00575790, std: 0.00034779, diversity: 24.9327)
+Gen 38 improved best J -> -0.00607029 (mean: -0.00577954, std: 0.00039243, diversity: 24.5996)
+DEBUG Gen 40: invalid_inds_count=100
+Gen 40 best J -0.00607029 (mean: -0.00585237, std: 0.00032110, diversity: 22.7451, no improve: 2)
+Gen 41 improved best J -> -0.00609791 (mean: -0.00591042, std: 0.00035439, diversity: 20.4380)
+Gen 42 improved best J -> -0.00615584 (mean: -0.00588496, std: 0.00049188, diversity: 21.1618)
+Gen 44 improved best J -> -0.00620800 (mean: -0.00590509, std: 0.00057533, diversity: 19.9114)
+Gen 45 improved best J -> -0.00624518 (mean: -0.00602038, std: 0.00033010, diversity: 21.4854)
+Gen 46 improved best J -> -0.00628864 (mean: -0.00602958, std: 0.00043893, diversity: 19.6638)
+Gen 47 improved best J -> -0.00630743 (mean: -0.00588307, std: 0.00146388, diversity: 19.1781)
+Gen 49 improved best J -> -0.00635673 (mean: -0.00623018, std: 0.00007556, diversity: 18.1729)
+DEBUG Gen 50: invalid_inds_count=100
+Gen 50 improved best J -> -0.00638187 (mean: -0.00621440, std: 0.00027098, diversity: 19.0464)
+Gen 51 improved best J -> -0.00644092 (mean: -0.00628233, std: 0.00010395, diversity: 18.2805)
+Gen 52 improved best J -> -0.00645745 (mean: -0.00629586, std: 0.00023107, diversity: 18.5061)
+Gen 53 improved best J -> -0.00647718 (mean: -0.00634768, std: 0.00011075, diversity: 19.2594)
+Gen 54 improved best J -> -0.00652993 (mean: -0.00637423, std: 0.00017394, diversity: 20.7938)
+Gen 55 improved best J -> -0.00654400 (mean: -0.00632299, std: 0.00061540, diversity: 19.5781)
+Gen 56 improved best J -> -0.00659127 (mean: -0.00640582, std: 0.00044352, diversity: 19.5630)
+Gen 57 improved best J -> -0.00660936 (mean: -0.00648188, std: 0.00022521, diversity: 17.8271)
+Gen 58 improved best J -> -0.00665690 (mean: -0.00653071, std: 0.00011620, diversity: 18.1416)
+Gen 59 improved best J -> -0.00670416 (mean: -0.00653817, std: 0.00018643, diversity: 18.1897)
+DEBUG Gen 60: invalid_inds_count=100
+Gen 60 improved best J -> -0.00678635 (mean: -0.00627349, std: 0.00192875, diversity: 18.5503)
+Gen 61 improved best J -> -0.00679152 (mean: -0.00657270, std: 0.00036514, diversity: 18.6809)
+Gen 62 improved best J -> -0.00682485 (mean: -0.00665800, std: 0.00026173, diversity: 17.9749)
+Gen 63 improved best J -> -0.00687594 (mean: -0.00672000, std: 0.00008282, diversity: 18.2489)
+Gen 64 improved best J -> -0.00689996 (mean: -0.00670664, std: 0.00039375, diversity: 17.4670)
+Gen 65 improved best J -> -0.00691765 (mean: -0.00670457, std: 0.00051409, diversity: 16.5813)
+Gen 66 improved best J -> -0.00697378 (mean: -0.00673605, std: 0.00054305, diversity: 17.4471)
+Gen 67 improved best J -> -0.00700985 (mean: -0.00679225, std: 0.00035312, diversity: 17.1642)
+Gen 69 improved best J -> -0.00702231 (mean: -0.00689536, std: 0.00014730, diversity: 17.2462)
+DEBUG Gen 70: invalid_inds_count=100
+Gen 70 improved best J -> -0.00707125 (mean: -0.00689591, std: 0.00028826, diversity: 15.9935)
+Gen 71 improved best J -> -0.00709237 (mean: -0.00680488, std: 0.00105135, diversity: 15.9735)
+Gen 72 improved best J -> -0.00710360 (mean: -0.00690625, std: 0.00045038, diversity: 16.4312)
+Gen 73 improved best J -> -0.00714456 (mean: -0.00701236, std: 0.00014549, diversity: 16.0212)
+Gen 74 improved best J -> -0.00718320 (mean: -0.00702914, std: 0.00022101, diversity: 15.5992)
+Gen 75 improved best J -> -0.00724362 (mean: -0.00704121, std: 0.00028283, diversity: 16.0111)
+Gen 77 improved best J -> -0.00727279 (mean: -0.00680775, std: 0.00241333, diversity: 16.9994)
+Gen 78 improved best J -> -0.00729591 (mean: -0.00714359, std: 0.00018130, diversity: 15.8628)
+Gen 79 improved best J -> -0.00730059 (mean: -0.00719890, std: 0.00006668, diversity: 15.5782)
+DEBUG Gen 80: invalid_inds_count=100
+Gen 80 improved best J -> -0.00731911 (mean: -0.00718517, std: 0.00029970, diversity: 15.6668)
+Gen 81 improved best J -> -0.00733980 (mean: -0.00725203, std: 0.00011051, diversity: 14.7744)
+Gen 82 improved best J -> -0.00736596 (mean: -0.00728144, std: 0.00005299, diversity: 15.0437)
+Gen 83 improved best J -> -0.00739779 (mean: -0.00728349, std: 0.00016115, diversity: 16.2364)
+Gen 84 improved best J -> -0.00741346 (mean: -0.00726901, std: 0.00041683, diversity: 16.3578)
+Gen 85 improved best J -> -0.00743153 (mean: -0.00723022, std: 0.00087818, diversity: 15.0805)
+Gen 86 improved best J -> -0.00747445 (mean: -0.00716289, std: 0.00100020, diversity: 15.3130)
+Gen 87 improved best J -> -0.00750423 (mean: -0.00732346, std: 0.00038273, diversity: 14.8662)
+Gen 88 improved best J -> -0.00750581 (mean: -0.00738107, std: 0.00028016, diversity: 16.2532)
+Gen 89 improved best J -> -0.00756707 (mean: -0.00742583, std: 0.00017025, diversity: 16.1060)
+DEBUG Gen 90: invalid_inds_count=100
+Gen 90 best J -0.00756707 (mean: -0.00742354, std: 0.00022522, diversity: 15.4678, no improve: 1)
+Gen 91 improved best J -> -0.00759829 (mean: -0.00742489, std: 0.00040924, diversity: 15.9216)
+Gen 92 improved best J -> -0.00762274 (mean: -0.00739846, std: 0.00058346, diversity: 16.3650)
+Gen 93 improved best J -> -0.00764783 (mean: -0.00748484, std: 0.00050956, diversity: 16.6998)
+Gen 94 improved best J -> -0.00766622 (mean: -0.00741270, std: 0.00081062, diversity: 15.6889)
+Gen 95 improved best J -> -0.00769019 (mean: -0.00754994, std: 0.00044160, diversity: 17.2657)
+Gen 96 improved best J -> -0.00772546 (mean: -0.00757503, std: 0.00033046, diversity: 16.9325)
+Gen 97 improved best J -> -0.00778265 (mean: -0.00750815, std: 0.00072165, diversity: 19.1365)
+Gen 98 improved best J -> -0.00780387 (mean: -0.00747707, std: 0.00104058, diversity: 18.1718)
+Gen 99 improved best J -> -0.00782689 (mean: -0.00762164, std: 0.00051217, diversity: 17.9480)
+DEBUG Gen 100: invalid_inds_count=100
+Gen 100 improved best J -> -0.00785103 (mean: -0.00754480, std: 0.00095320, diversity: 17.8076)
+Gen 101 improved best J -> -0.00787615 (mean: -0.00772663, std: 0.00022036, diversity: 16.9783)
+Gen 102 improved best J -> -0.00791879 (mean: -0.00778636, std: 0.00015240, diversity: 15.7754)
+Gen 103 improved best J -> -0.00796543 (mean: -0.00772079, std: 0.00059886, diversity: 16.0469)
+Gen 104 improved best J -> -0.00798217 (mean: -0.00768012, std: 0.00092750, diversity: 15.9442)
+Gen 105 improved best J -> -0.00798986 (mean: -0.00772666, std: 0.00078324, diversity: 16.5789)
+Gen 106 improved best J -> -0.00801773 (mean: -0.00789607, std: 0.00011430, diversity: 15.6742)
+Gen 107 improved best J -> -0.00803575 (mean: -0.00790447, std: 0.00024706, diversity: 16.7206)
+Gen 108 improved best J -> -0.00804691 (mean: -0.00784456, std: 0.00060754, diversity: 16.7078)
+Gen 109 improved best J -> -0.00808648 (mean: -0.00770645, std: 0.00106186, diversity: 15.6231)
+DEBUG Gen 110: invalid_inds_count=100
+Gen 110 improved best J -> -0.00810994 (mean: -0.00797527, std: 0.00022113, diversity: 15.8325)
+Gen 111 improved best J -> -0.00812134 (mean: -0.00797677, std: 0.00036033, diversity: 16.4608)
+Gen 112 improved best J -> -0.00813699 (mean: -0.00772012, std: 0.00129876, diversity: 14.8579)
+Gen 113 improved best J -> -0.00817380 (mean: -0.00797344, std: 0.00065909, diversity: 15.9231)
+Gen 114 improved best J -> -0.00820749 (mean: -0.00805489, std: 0.00034140, diversity: 16.6439)
+Gen 115 improved best J -> -0.00822211 (mean: -0.00813984, std: 0.00004437, diversity: 15.5120)
+Gen 116 improved best J -> -0.00826541 (mean: -0.00791152, std: 0.00243374, diversity: 15.5067)
+Gen 118 improved best J -> -0.00830394 (mean: -0.00763767, std: 0.00282400, diversity: 14.7167)
+Gen 119 improved best J -> -0.00834142 (mean: -0.00802610, std: 0.00092307, diversity: 14.1888)
+DEBUG Gen 120: invalid_inds_count=100
+Gen 120 improved best J -> -0.00835609 (mean: -0.00810726, std: 0.00154917, diversity: 14.8080)
+Gen 121 improved best J -> -0.00836453 (mean: -0.00813899, std: 0.00084804, diversity: 13.6655)
+Gen 122 improved best J -> -0.00839054 (mean: -0.00803091, std: 0.00129788, diversity: 14.1328)
+Gen 123 improved best J -> -0.00844195 (mean: -0.00787699, std: 0.00229953, diversity: 13.5797)
+Gen 124 improved best J -> -0.00844713 (mean: -0.00831402, std: 0.00034960, diversity: 15.4018)
+Gen 125 improved best J -> -0.00848531 (mean: -0.00821524, std: 0.00093518, diversity: 12.9280)
+Gen 126 improved best J -> -0.00852565 (mean: -0.00795514, std: 0.00237714, diversity: 15.7849)
+Gen 127 improved best J -> -0.00854361 (mean: -0.00819719, std: 0.00137001, diversity: 16.2172)
+Gen 128 improved best J -> -0.00855296 (mean: -0.00806940, std: 0.00154240, diversity: 17.5741)
+Gen 129 improved best J -> -0.00859722 (mean: -0.00824311, std: 0.00089539, diversity: 14.8107)
+DEBUG Gen 130: invalid_inds_count=100
+Gen 130 improved best J -> -0.00860867 (mean: -0.00790170, std: 0.00214824, diversity: 13.9980)
+Gen 131 improved best J -> -0.00864558 (mean: -0.00827238, std: 0.00099177, diversity: 14.9796)
+Gen 132 improved best J -> -0.00865393 (mean: -0.00849765, std: 0.00064530, diversity: 13.8090)
+Gen 133 improved best J -> -0.00869566 (mean: -0.00838467, std: 0.00089264, diversity: 12.5558)
+Gen 134 improved best J -> -0.00874266 (mean: -0.00810414, std: 0.00203674, diversity: 14.0967)
+Gen 135 improved best J -> -0.00874726 (mean: -0.00844585, std: 0.00075745, diversity: 14.1496)
+Gen 136 improved best J -> -0.00874775 (mean: -0.00859965, std: 0.00031058, diversity: 14.0669)
+Gen 137 improved best J -> -0.00875095 (mean: -0.00854951, std: 0.00064853, diversity: 13.7875)
+Gen 138 improved best J -> -0.00880052 (mean: -0.00845084, std: 0.00087950, diversity: 12.6407)
+Gen 139 improved best J -> -0.00882932 (mean: -0.00864952, std: 0.00041462, diversity: 12.5326)
+DEBUG Gen 140: invalid_inds_count=100
+Gen 140 best J -0.00882932 (mean: -0.00867992, std: 0.00030999, diversity: 12.3849, no improve: 1)
+Gen 141 improved best J -> -0.00884310 (mean: -0.00859439, std: 0.00083937, diversity: 11.8334)
+Gen 142 improved best J -> -0.00887391 (mean: -0.00831856, std: 0.00212901, diversity: 12.7196)
+Gen 143 improved best J -> -0.00888030 (mean: -0.00878111, std: 0.00011728, diversity: 11.9119)
+Gen 144 improved best J -> -0.00893847 (mean: -0.00872377, std: 0.00063232, diversity: 12.4916)
+Gen 145 best J -0.00893847 (mean: -0.00864371, std: 0.00094097, diversity: 12.7205, no improve: 1)
+Gen 146 improved best J -> -0.00897065 (mean: -0.00848871, std: 0.00174444, diversity: 13.1233)
+Gen 148 improved best J -> -0.00900019 (mean: -0.00855799, std: 0.00200562, diversity: 12.8567)
+DEBUG Gen 150: invalid_inds_count=100
+Gen 150 improved best J -> -0.00901036 (mean: -0.00885497, std: 0.00047313, diversity: 13.7177)
+Gen 151 improved best J -> -0.00904122 (mean: -0.00853323, std: 0.00141452, diversity: 12.2339)
+Gen 152 improved best J -> -0.00908951 (mean: -0.00891263, std: 0.00027369, diversity: 12.2052)
+Gen 154 improved best J -> -0.00911856 (mean: -0.00883391, std: 0.00068954, diversity: 12.6724)
+Gen 155 improved best J -> -0.00912576 (mean: -0.00873628, std: 0.00106116, diversity: 13.1467)
+Gen 156 improved best J -> -0.00914436 (mean: -0.00881031, std: 0.00091877, diversity: 12.4427)
+Gen 158 improved best J -> -0.00919072 (mean: -0.00867970, std: 0.00201563, diversity: 13.3742)
+Gen 159 improved best J -> -0.00920575 (mean: -0.00890555, std: 0.00098430, diversity: 12.6110)
+DEBUG Gen 160: invalid_inds_count=100
+Gen 160 improved best J -> -0.00920931 (mean: -0.00886172, std: 0.00096284, diversity: 13.0978)
+Gen 161 improved best J -> -0.00923219 (mean: -0.00885002, std: 0.00100973, diversity: 13.7091)
+Gen 162 improved best J -> -0.00924908 (mean: -0.00809443, std: 0.00367197, diversity: 12.5458)
+Gen 163 improved best J -> -0.00925654 (mean: -0.00867486, std: 0.00132878, diversity: 12.9609)
+Gen 164 improved best J -> -0.00928025 (mean: -0.00867940, std: 0.00161876, diversity: 11.6095)
+Gen 165 improved best J -> -0.00933017 (mean: -0.00880671, std: 0.00173344, diversity: 11.5924)
+Gen 167 improved best J -> -0.00935045 (mean: -0.00898250, std: 0.00088516, diversity: 12.2238)
+Gen 168 improved best J -> -0.00935638 (mean: -0.00863983, std: 0.00164726, diversity: 10.8065)
+Gen 169 improved best J -> -0.00938530 (mean: -0.00892186, std: 0.00145097, diversity: 12.4990)
+DEBUG Gen 170: invalid_inds_count=100
+Gen 170 improved best J -> -0.00939064 (mean: -0.00903998, std: 0.00078508, diversity: 12.5318)
+Gen 171 improved best J -> -0.00941730 (mean: -0.00877529, std: 0.00163168, diversity: 14.0377)
+Gen 174 improved best J -> -0.00946443 (mean: -0.00878376, std: 0.00255672, diversity: 13.9076)
+Gen 175 improved best J -> -0.00947276 (mean: -0.00912545, std: 0.00114230, diversity: 13.0062)
+Gen 176 improved best J -> -0.00949763 (mean: -0.00898899, std: 0.00210721, diversity: 11.4589)
+Gen 177 improved best J -> -0.00951310 (mean: -0.00909372, std: 0.00156931, diversity: 12.2079)
+Gen 178 improved best J -> -0.00953255 (mean: -0.00925104, std: 0.00068171, diversity: 12.0260)
+Gen 179 improved best J -> -0.00955450 (mean: -0.00934790, std: 0.00053295, diversity: 14.3466)
+DEBUG Gen 180: invalid_inds_count=100
+Gen 180 improved best J -> -0.00956365 (mean: -0.00931942, std: 0.00070517, diversity: 11.8097)
+Gen 181 improved best J -> -0.00957872 (mean: -0.00880718, std: 0.00254108, diversity: 11.9718)
+Gen 182 improved best J -> -0.00959278 (mean: -0.00920726, std: 0.00158673, diversity: 12.0179)
+Gen 183 improved best J -> -0.00961544 (mean: -0.00941571, std: 0.00049825, diversity: 11.1948)
+Gen 184 improved best J -> -0.00962084 (mean: -0.00922827, std: 0.00117013, diversity: 8.9651)
+Gen 185 improved best J -> -0.00962330 (mean: -0.00929959, std: 0.00078548, diversity: 9.9351)
+Gen 186 improved best J -> -0.00963400 (mean: -0.00941586, std: 0.00078192, diversity: 9.6120)
+Gen 187 improved best J -> -0.00965317 (mean: -0.00911428, std: 0.00250509, diversity: 9.1516)
+Gen 188 improved best J -> -0.00966284 (mean: -0.00923651, std: 0.00152646, diversity: 9.2995)
+Gen 189 improved best J -> -0.00969637 (mean: -0.00941499, std: 0.00080935, diversity: 10.5790)
+DEBUG Gen 190: invalid_inds_count=100
+Gen 190 best J -0.00969637 (mean: -0.00917466, std: 0.00194473, diversity: 10.9559, no improve: 1)
+Gen 191 improved best J -> -0.00970696 (mean: -0.00919687, std: 0.00145236, diversity: 10.5231)
+Gen 192 improved best J -> -0.00971940 (mean: -0.00899529, std: 0.00303265, diversity: 9.8679)
+Gen 193 improved best J -> -0.00973456 (mean: -0.00910293, std: 0.00227090, diversity: 11.3317)
+Gen 194 improved best J -> -0.00974474 (mean: -0.00917931, std: 0.00205986, diversity: 10.6678)
+Gen 195 best J -0.00974474 (mean: -0.00886108, std: 0.00183243, diversity: 11.4267, no improve: 1)
+Gen 196 improved best J -> -0.00974936 (mean: -0.00904693, std: 0.00140640, diversity: 11.3663)
+Gen 197 improved best J -> -0.00977299 (mean: -0.00909086, std: 0.00149229, diversity: 12.2499)
+Gen 198 improved best J -> -0.00979543 (mean: -0.00932421, std: 0.00124398, diversity: 10.9829)
+Gen 199 improved best J -> -0.00979848 (mean: -0.00934709, std: 0.00135124, diversity: 11.5694)
+DEBUG Gen 200: invalid_inds_count=100
+Gen 200 improved best J -> -0.00984562 (mean: -0.00881410, std: 0.00290234, diversity: 12.2056)
+Saved GA history to: /Users/ankitkumarsingh/Desktop/MMTP/Optimal_cost_reduction_in_electric_vehicle_Using_Priority_scheduling_and_Optimisation/ga_history.csv
+
+=== GA Result Summary ===
+Objective J (normalized weighted): -0.009845619679351266
+F1 (cost, raw) : 99.22276983330941 F1_norm: 0.04734362526637182
+F2 (deg, raw): 11.174654816453314 F2_norm: 0.005030120806054284
+F3 (var, raw): 42086.44214734071 F3_norm: 0.0001408509810112567
+F4 (satisfaction, raw): 27.569122731344624 F4_norm: 0.09189707577084243
+Penalties (raw): 0.0 Penalties_norm: 0.0
+Violations (SoC, occ, grid): 0.0 0.0 0.0
+Generations executed: 200
+
+--- Derived Metrics ---
+Average net energy cost per EV: 0.33074256611103137
+Average battery degradation cost per EV: 0.03724884938817771
+Grid load variance (raw F3): 42086.44214734071
+Average user satisfaction: 0.09189707577114875
+Average waiting time (admitted EVs): 4.797 hours
+Average waiting time (all EVs in pool): 4.797 hours
+Fairness (Gini on delivered kWh): 1.2366155104715157
+Saved best_schedule_normalized.csv to: /Users/ankitkumarsingh/Desktop/MMTP/Optimal_cost_reduction_in_electric_vehicle_Using_Priority_scheduling_and_Optimisation/best_schedule_normalized.csv
+
+--- Per-EV Diagnostics (scheduled) ---
+EV1: delivered=10.03 kWh, SoC_T=0.480, S_i=0.990
+EV2: delivered=3.59 kWh, SoC_T=0.163, S_i=0.225
+EV3: delivered=0.00 kWh, SoC_T=0.316, S_i=0.000
+EV4: delivered=0.00 kWh, SoC_T=0.139, S_i=0.000
+EV5: delivered=0.00 kWh, SoC_T=0.244, S_i=0.000
+EV6: delivered=0.00 kWh, SoC_T=0.331, S_i=0.000
+EV7: delivered=11.95 kWh, SoC_T=0.414, S_i=0.977
+EV8: delivered=23.11 kWh, SoC_T=0.667, S_i=0.987
+EV9: delivered=17.31 kWh, SoC_T=0.560, S_i=0.987
+EV10: delivered=0.00 kWh, SoC_T=0.238, S_i=0.000
+EV11: delivered=0.00 kWh, SoC_T=0.408, S_i=0.000
+EV12: delivered=0.00 kWh, SoC_T=0.140, S_i=0.000
+EV13: delivered=6.52 kWh, SoC_T=0.349, S_i=0.661
+EV14: delivered=0.00 kWh, SoC_T=0.191, S_i=0.000
+EV15: delivered=4.40 kWh, SoC_T=0.360, S_i=0.418
+EV16: delivered=0.00 kWh, SoC_T=0.114, S_i=0.000
+EV17: delivered=10.84 kWh, SoC_T=0.404, S_i=0.969
+EV18: delivered=2.95 kWh, SoC_T=0.232, S_i=0.101
+EV19: delivered=0.00 kWh, SoC_T=0.354, S_i=0.000
+EV20: delivered=0.00 kWh, SoC_T=0.308, S_i=0.000
+EV21: delivered=5.24 kWh, SoC_T=0.280, S_i=0.247
+EV22: delivered=0.00 kWh, SoC_T=0.339, S_i=0.000
+EV23: delivered=0.00 kWh, SoC_T=0.245, S_i=0.000
+EV24: delivered=3.81 kWh, SoC_T=0.561, S_i=0.356
+EV25: delivered=0.00 kWh, SoC_T=0.290, S_i=0.000
+EV26: delivered=6.51 kWh, SoC_T=0.424, S_i=0.543
+EV27: delivered=0.00 kWh, SoC_T=0.222, S_i=0.000
+EV28: delivered=0.00 kWh, SoC_T=0.277, S_i=0.000
+EV29: delivered=22.51 kWh, SoC_T=0.518, S_i=0.943
+EV30: delivered=3.18 kWh, SoC_T=0.316, S_i=0.274
+EV31: delivered=0.00 kWh, SoC_T=0.231, S_i=0.000
+EV32: delivered=0.00 kWh, SoC_T=0.168, S_i=0.000
+EV33: delivered=0.00 kWh, SoC_T=0.228, S_i=0.000
+EV34: delivered=4.14 kWh, SoC_T=0.612, S_i=0.379
+EV35: delivered=0.00 kWh, SoC_T=0.190, S_i=0.000
+EV36: delivered=0.00 kWh, SoC_T=0.429, S_i=0.000
+EV37: delivered=2.98 kWh, SoC_T=0.301, S_i=0.167
+EV38: delivered=7.92 kWh, SoC_T=0.353, S_i=0.430
+EV39: delivered=12.03 kWh, SoC_T=0.326, S_i=0.596
+EV40: delivered=0.00 kWh, SoC_T=0.213, S_i=0.000
+EV41: delivered=4.09 kWh, SoC_T=0.327, S_i=0.299
+EV42: delivered=11.62 kWh, SoC_T=0.512, S_i=0.991
+EV43: delivered=0.00 kWh, SoC_T=0.102, S_i=0.000
+EV44: delivered=5.56 kWh, SoC_T=0.333, S_i=0.437
+EV45: delivered=3.53 kWh, SoC_T=0.261, S_i=0.272
+EV46: delivered=0.00 kWh, SoC_T=0.111, S_i=0.000
+EV47: delivered=10.36 kWh, SoC_T=0.487, S_i=0.844
+EV48: delivered=1.75 kWh, SoC_T=0.223, S_i=0.089
+EV49: delivered=0.00 kWh, SoC_T=0.337, S_i=0.000
+EV50: delivered=22.82 kWh, SoC_T=0.572, S_i=0.962
+EV51: delivered=15.40 kWh, SoC_T=0.405, S_i=0.586
+EV52: delivered=4.47 kWh, SoC_T=0.364, S_i=0.219
+EV53: delivered=11.07 kWh, SoC_T=0.371, S_i=0.847
+EV54: delivered=-4.87 kWh, SoC_T=0.233, S_i=0.000
+EV55: delivered=0.00 kWh, SoC_T=0.244, S_i=0.000
+EV56: delivered=5.67 kWh, SoC_T=0.394, S_i=0.534
+EV57: delivered=0.00 kWh, SoC_T=0.334, S_i=0.000
+EV58: delivered=0.00 kWh, SoC_T=0.202, S_i=0.000
+EV59: delivered=5.46 kWh, SoC_T=0.218, S_i=0.423
+EV60: delivered=0.00 kWh, SoC_T=0.160, S_i=0.000
+EV61: delivered=0.00 kWh, SoC_T=0.103, S_i=0.000
+EV62: delivered=3.88 kWh, SoC_T=0.381, S_i=0.315
+EV63: delivered=3.84 kWh, SoC_T=0.484, S_i=0.359
+EV64: delivered=0.00 kWh, SoC_T=0.368, S_i=0.000
+EV65: delivered=-3.88 kWh, SoC_T=0.209, S_i=0.000
+EV66: delivered=0.00 kWh, SoC_T=0.129, S_i=0.000
+EV67: delivered=2.95 kWh, SoC_T=0.116, S_i=0.088
+EV68: delivered=0.00 kWh, SoC_T=0.264, S_i=0.000
+EV69: delivered=15.77 kWh, SoC_T=0.468, S_i=0.718
+EV70: delivered=0.00 kWh, SoC_T=0.286, S_i=0.000
+EV71: delivered=-2.45 kWh, SoC_T=0.081, S_i=0.000
+EV72: delivered=-22.19 kWh, SoC_T=0.083, S_i=0.000
+EV73: delivered=0.00 kWh, SoC_T=0.150, S_i=0.000
+EV74: delivered=0.00 kWh, SoC_T=0.487, S_i=0.000
+EV75: delivered=0.00 kWh, SoC_T=0.096, S_i=0.000
+EV76: delivered=0.00 kWh, SoC_T=0.182, S_i=0.000
+EV77: delivered=8.61 kWh, SoC_T=0.427, S_i=0.452
+EV78: delivered=0.00 kWh, SoC_T=0.079, S_i=0.000
+EV79: delivered=-4.18 kWh, SoC_T=0.270, S_i=0.000
+EV80: delivered=-2.35 kWh, SoC_T=0.189, S_i=0.000
+EV81: delivered=0.00 kWh, SoC_T=0.215, S_i=0.000
+EV82: delivered=0.00 kWh, SoC_T=0.260, S_i=0.000
+EV83: delivered=2.70 kWh, SoC_T=0.185, S_i=0.154
+EV84: delivered=0.00 kWh, SoC_T=0.110, S_i=0.000
+EV85: delivered=1.75 kWh, SoC_T=0.144, S_i=0.175
+EV86: delivered=4.18 kWh, SoC_T=0.312, S_i=0.118
+EV87: delivered=-28.87 kWh, SoC_T=0.055, S_i=0.000
+EV88: delivered=0.00 kWh, SoC_T=0.224, S_i=0.000
+EV89: delivered=0.00 kWh, SoC_T=0.311, S_i=0.000
+EV90: delivered=0.00 kWh, SoC_T=0.218, S_i=0.000
+EV91: delivered=0.00 kWh, SoC_T=0.173, S_i=0.000
+EV92: delivered=0.00 kWh, SoC_T=0.095, S_i=0.000
+EV93: delivered=0.00 kWh, SoC_T=0.174, S_i=0.000
+EV94: delivered=0.00 kWh, SoC_T=0.193, S_i=0.000
+EV95: delivered=1.26 kWh, SoC_T=0.342, S_i=0.072
+EV96: delivered=0.00 kWh, SoC_T=0.123, S_i=0.000
+EV97: delivered=0.00 kWh, SoC_T=0.137, S_i=0.000
+EV98: delivered=0.00 kWh, SoC_T=0.173, S_i=0.000
+EV99: delivered=0.00 kWh, SoC_T=0.166, S_i=0.000
+EV100: delivered=0.00 kWh, SoC_T=0.195, S_i=0.000
+EV101: delivered=0.00 kWh, SoC_T=0.075, S_i=0.000
+EV102: delivered=0.00 kWh, SoC_T=0.164, S_i=0.000
+EV103: delivered=0.00 kWh, SoC_T=0.163, S_i=0.000
+EV104: delivered=0.00 kWh, SoC_T=0.103, S_i=0.000
+EV105: delivered=0.00 kWh, SoC_T=0.116, S_i=0.000
+EV106: delivered=3.32 kWh, SoC_T=0.216, S_i=0.114
+EV107: delivered=0.00 kWh, SoC_T=0.086, S_i=0.000
+EV108: delivered=0.00 kWh, SoC_T=0.118, S_i=0.000
+EV109: delivered=0.00 kWh, SoC_T=0.164, S_i=0.000
+EV110: delivered=19.32 kWh, SoC_T=0.663, S_i=0.978
+EV111: delivered=0.00 kWh, SoC_T=0.179, S_i=0.000
+EV112: delivered=0.00 kWh, SoC_T=0.195, S_i=0.000
+EV113: delivered=1.79 kWh, SoC_T=0.242, S_i=0.239
+EV114: delivered=0.00 kWh, SoC_T=0.298, S_i=0.000
+EV115: delivered=0.00 kWh, SoC_T=0.321, S_i=0.000
+EV116: delivered=0.00 kWh, SoC_T=0.323, S_i=0.000
+EV117: delivered=0.00 kWh, SoC_T=0.165, S_i=0.000
+EV118: delivered=0.00 kWh, SoC_T=0.133, S_i=0.000
+EV119: delivered=15.33 kWh, SoC_T=0.448, S_i=0.644
+EV120: delivered=0.00 kWh, SoC_T=0.197, S_i=0.000
+EV121: delivered=0.00 kWh, SoC_T=0.341, S_i=0.000
+EV122: delivered=0.00 kWh, SoC_T=0.067, S_i=0.000
+EV123: delivered=0.00 kWh, SoC_T=0.175, S_i=0.000
+EV124: delivered=0.00 kWh, SoC_T=0.262, S_i=0.000
+EV125: delivered=0.00 kWh, SoC_T=0.084, S_i=0.000
+EV126: delivered=0.00 kWh, SoC_T=0.180, S_i=0.000
+EV127: delivered=2.03 kWh, SoC_T=0.187, S_i=0.367
+EV128: delivered=0.00 kWh, SoC_T=0.378, S_i=0.000
+EV129: delivered=0.00 kWh, SoC_T=0.151, S_i=0.000
+EV130: delivered=0.00 kWh, SoC_T=0.377, S_i=0.000
+EV131: delivered=9.19 kWh, SoC_T=0.503, S_i=0.655
+EV132: delivered=0.00 kWh, SoC_T=0.376, S_i=0.000
+EV133: delivered=0.00 kWh, SoC_T=0.193, S_i=0.000
+EV134: delivered=0.00 kWh, SoC_T=0.153, S_i=0.000
+EV135: delivered=0.00 kWh, SoC_T=0.196, S_i=0.000
+EV136: delivered=0.90 kWh, SoC_T=0.355, S_i=0.061
+EV137: delivered=0.00 kWh, SoC_T=0.157, S_i=0.000
+EV138: delivered=0.00 kWh, SoC_T=0.150, S_i=0.000
+EV139: delivered=4.19 kWh, SoC_T=0.323, S_i=0.320
+EV140: delivered=0.00 kWh, SoC_T=0.590, S_i=0.000
+EV141: delivered=0.00 kWh, SoC_T=0.301, S_i=0.000
+EV142: delivered=0.00 kWh, SoC_T=0.292, S_i=0.000
+EV143: delivered=0.00 kWh, SoC_T=0.154, S_i=0.000
+EV144: delivered=0.00 kWh, SoC_T=0.269, S_i=0.000
+EV145: delivered=0.00 kWh, SoC_T=0.194, S_i=0.000
+EV146: delivered=0.00 kWh, SoC_T=0.364, S_i=0.000
+EV147: delivered=2.48 kWh, SoC_T=0.295, S_i=0.084
+EV148: delivered=0.00 kWh, SoC_T=0.301, S_i=0.000
+EV149: delivered=0.00 kWh, SoC_T=0.113, S_i=0.000
+EV150: delivered=0.00 kWh, SoC_T=0.204, S_i=0.000
+EV151: delivered=2.79 kWh, SoC_T=0.468, S_i=0.084
+EV152: delivered=0.82 kWh, SoC_T=0.281, S_i=0.043
+EV153: delivered=2.53 kWh, SoC_T=0.203, S_i=0.163
+EV154: delivered=0.00 kWh, SoC_T=0.201, S_i=0.000
+EV155: delivered=6.07 kWh, SoC_T=0.293, S_i=0.502
+EV156: delivered=0.00 kWh, SoC_T=0.394, S_i=0.000
+EV157: delivered=0.00 kWh, SoC_T=0.272, S_i=0.000
+EV158: delivered=0.00 kWh, SoC_T=0.080, S_i=0.000
+EV159: delivered=0.00 kWh, SoC_T=0.276, S_i=0.000
+EV160: delivered=0.00 kWh, SoC_T=0.175, S_i=0.000
+EV161: delivered=0.46 kWh, SoC_T=0.099, S_i=0.040
+EV162: delivered=0.00 kWh, SoC_T=0.146, S_i=0.000
+EV163: delivered=0.00 kWh, SoC_T=0.285, S_i=0.000
+EV164: delivered=0.00 kWh, SoC_T=0.343, S_i=0.000
+EV165: delivered=4.86 kWh, SoC_T=0.187, S_i=0.277
+EV166: delivered=0.00 kWh, SoC_T=0.115, S_i=0.000
+EV167: delivered=0.00 kWh, SoC_T=0.390, S_i=0.000
+EV168: delivered=0.00 kWh, SoC_T=0.309, S_i=0.000
+EV169: delivered=1.61 kWh, SoC_T=0.314, S_i=0.109
+EV170: delivered=0.00 kWh, SoC_T=0.169, S_i=0.000
+EV171: delivered=0.00 kWh, SoC_T=0.184, S_i=0.000
+EV172: delivered=0.00 kWh, SoC_T=0.372, S_i=0.000
+EV173: delivered=0.00 kWh, SoC_T=0.283, S_i=0.000
+EV174: delivered=0.45 kWh, SoC_T=0.294, S_i=0.012
+EV175: delivered=0.00 kWh, SoC_T=0.347, S_i=0.000
+EV176: delivered=0.00 kWh, SoC_T=0.213, S_i=0.000
+EV177: delivered=3.65 kWh, SoC_T=0.232, S_i=0.302
+EV178: delivered=-0.75 kWh, SoC_T=0.203, S_i=0.000
+EV179: delivered=0.00 kWh, SoC_T=0.288, S_i=0.000
+EV180: delivered=3.05 kWh, SoC_T=0.388, S_i=0.240
+EV181: delivered=0.00 kWh, SoC_T=0.167, S_i=0.000
+EV182: delivered=0.00 kWh, SoC_T=0.165, S_i=0.000
+EV183: delivered=0.00 kWh, SoC_T=0.339, S_i=0.000
+EV184: delivered=0.00 kWh, SoC_T=0.362, S_i=0.000
+EV185: delivered=0.00 kWh, SoC_T=0.247, S_i=0.000
+EV186: delivered=0.00 kWh, SoC_T=0.334, S_i=0.000
+EV187: delivered=0.90 kWh, SoC_T=0.377, S_i=0.132
+EV188: delivered=0.00 kWh, SoC_T=0.110, S_i=0.000
+EV189: delivered=0.00 kWh, SoC_T=0.144, S_i=0.000
+EV190: delivered=0.00 kWh, SoC_T=0.064, S_i=0.000
+EV191: delivered=0.00 kWh, SoC_T=0.241, S_i=0.000
+EV192: delivered=0.00 kWh, SoC_T=0.293, S_i=0.000
+EV193: delivered=0.00 kWh, SoC_T=0.229, S_i=0.000
+EV194: delivered=0.00 kWh, SoC_T=0.143, S_i=0.000
+EV195: delivered=3.25 kWh, SoC_T=0.220, S_i=0.217
+EV196: delivered=0.00 kWh, SoC_T=0.159, S_i=0.000
+EV197: delivered=0.00 kWh, SoC_T=0.232, S_i=0.000
+EV198: delivered=0.00 kWh, SoC_T=0.477, S_i=0.000
+EV199: delivered=0.00 kWh, SoC_T=0.226, S_i=0.000
+EV200: delivered=0.00 kWh, SoC_T=0.214, S_i=0.000
+EV201: delivered=0.00 kWh, SoC_T=0.168, S_i=0.000
+EV202: delivered=0.00 kWh, SoC_T=0.229, S_i=0.000
+EV203: delivered=0.00 kWh, SoC_T=0.175, S_i=0.000
+EV204: delivered=0.00 kWh, SoC_T=0.226, S_i=0.000
+EV205: delivered=16.66 kWh, SoC_T=0.628, S_i=0.947
+EV206: delivered=0.00 kWh, SoC_T=0.164, S_i=0.000
+EV207: delivered=0.00 kWh, SoC_T=0.278, S_i=0.000
+EV208: delivered=0.00 kWh, SoC_T=0.397, S_i=0.000
+EV209: delivered=5.23 kWh, SoC_T=0.547, S_i=0.418
+EV210: delivered=0.00 kWh, SoC_T=0.280, S_i=0.000
+EV211: delivered=0.00 kWh, SoC_T=0.153, S_i=0.000
+EV212: delivered=0.00 kWh, SoC_T=0.381, S_i=0.000
+EV213: delivered=0.00 kWh, SoC_T=0.271, S_i=0.000
+EV214: delivered=0.00 kWh, SoC_T=0.171, S_i=0.000
+EV215: delivered=0.00 kWh, SoC_T=0.261, S_i=0.000
+EV216: delivered=0.00 kWh, SoC_T=0.337, S_i=0.000
+EV217: delivered=0.00 kWh, SoC_T=0.254, S_i=0.000
+EV218: delivered=0.00 kWh, SoC_T=0.253, S_i=0.000
+EV219: delivered=0.00 kWh, SoC_T=0.318, S_i=0.000
+EV220: delivered=0.00 kWh, SoC_T=0.277, S_i=0.000
+EV221: delivered=0.00 kWh, SoC_T=0.381, S_i=0.000
+EV222: delivered=0.00 kWh, SoC_T=0.352, S_i=0.000
+EV223: delivered=0.00 kWh, SoC_T=0.254, S_i=0.000
+EV224: delivered=0.00 kWh, SoC_T=0.306, S_i=0.000
+EV225: delivered=0.00 kWh, SoC_T=0.115, S_i=0.000
+EV226: delivered=0.00 kWh, SoC_T=0.366, S_i=0.000
+EV227: delivered=0.00 kWh, SoC_T=0.321, S_i=0.000
+EV228: delivered=0.00 kWh, SoC_T=0.189, S_i=0.000
+EV229: delivered=0.00 kWh, SoC_T=0.207, S_i=0.000
+EV230: delivered=0.69 kWh, SoC_T=0.371, S_i=0.043
+EV231: delivered=0.00 kWh, SoC_T=0.393, S_i=0.000
+EV232: delivered=0.00 kWh, SoC_T=0.169, S_i=0.000
+EV233: delivered=0.00 kWh, SoC_T=0.120, S_i=0.000
+EV234: delivered=0.00 kWh, SoC_T=0.119, S_i=0.000
+EV235: delivered=0.00 kWh, SoC_T=0.194, S_i=0.000
+EV236: delivered=0.00 kWh, SoC_T=0.172, S_i=0.000
+EV237: delivered=0.00 kWh, SoC_T=0.174, S_i=0.000
+EV238: delivered=0.00 kWh, SoC_T=0.133, S_i=0.000
+EV239: delivered=0.00 kWh, SoC_T=0.258, S_i=0.000
+EV240: delivered=0.00 kWh, SoC_T=0.305, S_i=0.000
+EV241: delivered=0.00 kWh, SoC_T=0.174, S_i=0.000
+EV242: delivered=0.00 kWh, SoC_T=0.306, S_i=0.000
+EV243: delivered=0.00 kWh, SoC_T=0.253, S_i=0.000
+EV244: delivered=0.00 kWh, SoC_T=0.087, S_i=0.000
+EV245: delivered=0.00 kWh, SoC_T=0.165, S_i=0.000
+EV246: delivered=0.00 kWh, SoC_T=0.237, S_i=0.000
+EV247: delivered=0.00 kWh, SoC_T=0.244, S_i=0.000
+EV248: delivered=0.00 kWh, SoC_T=0.129, S_i=0.000
+EV249: delivered=0.00 kWh, SoC_T=0.249, S_i=0.000
+EV250: delivered=0.00 kWh, SoC_T=0.432, S_i=0.000
+EV251: delivered=0.00 kWh, SoC_T=0.064, S_i=0.000
+EV252: delivered=-0.30 kWh, SoC_T=0.228, S_i=0.000
+EV253: delivered=3.63 kWh, SoC_T=0.253, S_i=0.344
+EV254: delivered=0.00 kWh, SoC_T=0.165, S_i=0.000
+EV255: delivered=0.00 kWh, SoC_T=0.190, S_i=0.000
+EV256: delivered=0.00 kWh, SoC_T=0.185, S_i=0.000
+EV257: delivered=0.00 kWh, SoC_T=0.275, S_i=0.000
+EV258: delivered=0.00 kWh, SoC_T=0.240, S_i=0.000
+EV259: delivered=0.00 kWh, SoC_T=0.071, S_i=0.000
+EV260: delivered=0.00 kWh, SoC_T=0.085, S_i=0.000
+EV261: delivered=0.00 kWh, SoC_T=0.180, S_i=0.000
+EV262: delivered=0.00 kWh, SoC_T=0.282, S_i=0.000
+EV263: delivered=0.00 kWh, SoC_T=0.099, S_i=0.000
+EV264: delivered=0.00 kWh, SoC_T=0.215, S_i=0.000
+EV265: delivered=0.00 kWh, SoC_T=0.437, S_i=0.000
+EV266: delivered=0.00 kWh, SoC_T=0.153, S_i=0.000
+EV267: delivered=0.00 kWh, SoC_T=0.135, S_i=0.000
+EV268: delivered=0.00 kWh, SoC_T=0.289, S_i=0.000
+EV269: delivered=0.80 kWh, SoC_T=0.436, S_i=0.072
+EV270: delivered=0.00 kWh, SoC_T=0.110, S_i=0.000
+EV271: delivered=0.00 kWh, SoC_T=0.315, S_i=0.000
+EV272: delivered=0.00 kWh, SoC_T=0.384, S_i=0.000
+EV273: delivered=0.00 kWh, SoC_T=0.315, S_i=0.000
+EV274: delivered=0.00 kWh, SoC_T=0.296, S_i=0.000
+EV275: delivered=0.00 kWh, SoC_T=0.250, S_i=0.000
+EV276: delivered=0.00 kWh, SoC_T=0.184, S_i=0.000
+EV277: delivered=0.00 kWh, SoC_T=0.091, S_i=0.000
+EV278: delivered=0.00 kWh, SoC_T=0.157, S_i=0.000
+EV279: delivered=0.00 kWh, SoC_T=0.355, S_i=0.000
+EV280: delivered=0.00 kWh, SoC_T=0.100, S_i=0.000
+EV281: delivered=0.00 kWh, SoC_T=0.251, S_i=0.000
+EV282: delivered=0.00 kWh, SoC_T=0.097, S_i=0.000
+EV283: delivered=0.00 kWh, SoC_T=0.116, S_i=0.000
+EV284: delivered=0.00 kWh, SoC_T=0.296, S_i=0.000
+EV285: delivered=0.00 kWh, SoC_T=0.385, S_i=0.000
+EV286: delivered=0.00 kWh, SoC_T=0.139, S_i=0.000
+EV287: delivered=0.00 kWh, SoC_T=0.228, S_i=0.000
+EV288: delivered=0.00 kWh, SoC_T=0.464, S_i=0.000
+EV289: delivered=0.00 kWh, SoC_T=0.133, S_i=0.000
+EV290: delivered=0.00 kWh, SoC_T=0.125, S_i=0.000
+EV291: delivered=0.00 kWh, SoC_T=0.386, S_i=0.000
+EV292: delivered=0.00 kWh, SoC_T=0.235, S_i=0.000
+EV293: delivered=0.00 kWh, SoC_T=0.266, S_i=0.000
+EV294: delivered=0.00 kWh, SoC_T=0.256, S_i=0.000
+EV295: delivered=0.00 kWh, SoC_T=0.098, S_i=0.000
+EV296: delivered=0.00 kWh, SoC_T=0.241, S_i=0.000
+EV297: delivered=0.00 kWh, SoC_T=0.385, S_i=0.000
+EV298: delivered=15.18 kWh, SoC_T=0.283, S_i=0.959
+EV299: delivered=0.00 kWh, SoC_T=0.351, S_i=0.000
+EV300: delivered=0.00 kWh, SoC_T=0.294, S_i=0.000

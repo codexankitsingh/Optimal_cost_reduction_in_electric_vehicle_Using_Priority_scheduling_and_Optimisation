@@ -90,9 +90,15 @@ def admit_fcfs(ev_list: List[Dict], M: int) -> List[Dict]:
     """
     # Sort by arrival time, then by ID for tie-breaking
     sorted_evs = sorted(ev_list, key=lambda ev: (ev.get('T_arr_idx', 0), ev.get('id', 0)))
+
+    # Debug: Log sorted EVs
+    print("DEBUG: Sorted EVs by T_arr_idx and ID:")
+    for ev in sorted_evs:
+        print(f"  EV{ev['id']}: T_arr_idx = {ev.get('T_arr_idx', 0)}, ID = {ev['id']}")
+
     admitted = sorted_evs[:M]
     waiting = [ev for ev in sorted_evs if ev not in admitted]
-    
+
     print("=== FCFS Admission ===\n")
     print(f"Total EVs: {len(ev_list)}, Available chargers: {M}")
     print(f"Admission criteria: First-Come-First-Served (earliest T_arr_idx)")
@@ -101,7 +107,7 @@ def admit_fcfs(ev_list: List[Dict], M: int) -> List[Dict]:
         print(f"  EV{ev['id']}: T_arr_idx = {ev.get('T_arr_idx', 0)}")
     print(f"\nAdmitted EVs (first {M}): {', '.join('EV'+str(ev['id']) for ev in admitted)}")
     print(f"Waiting EVs: {', '.join('EV'+str(ev['id']) for ev in waiting)}\n")
-    
+
     return admitted
 
 # -------------------------
@@ -211,29 +217,20 @@ def make_fitness_function(evs, M, T, delta_t,
                           P_max, num_chargers,
                           w1, w2, w3, w4,
                           alpha1, alpha2, alpha3):
-    # Improved normalization denominators using realistic upper bounds
-    max_power_sum = sum(ev.get('P_ref', ev.get('R_i', 7.0)) for ev in evs) if evs else 1.0
-    max_energy_over_horizon = max_power_sum * delta_t * T
-    
-    # F1: use difference between max buy and min rev prices for better normalization
-    pi_buy_arr = pi_buy if hasattr(pi_buy, '__len__') else [pi_buy]
-    pi_rev_arr = pi_rev if hasattr(pi_rev, '__len__') else [pi_rev]
-    max_pi_buy = max(pi_buy_arr)
-    min_pi_rev = min(pi_rev_arr)
-    max_price_diff = max(1e-9, max_pi_buy - min_pi_rev)  # ensure positive
-    denom_F1 = (max_price_diff * max_energy_over_horizon + 1e-9)
-    
-    max_cdeg = max(cdeg_arr) if len(cdeg_arr) > 0 else 1.0
-    denom_F2 = (max_cdeg * max_energy_over_horizon + 1e-9)
-    
-    # F3: variance normalization - use max possible variance
-    max_power_sum_sq = max_power_sum ** 2
-    denom_F3 = (max_power_sum_sq * T + 1e-9)
-    
-    denom_F4 = (M + 1e-9)
-    
-    # Omega: penalty normalization - scale relative to typical energy
-    denom_Omega = (max_energy_over_horizon + 1e-9)
+    # Simplified normalization denominators
+    max_energy_over_horizon = sum(ev.get('Ecap', 40.0) for ev in evs) * delta_t * T
+    max_price_diff = max(pi_buy) - min(pi_rev)
+    max_cdeg = max(cdeg_arr)
+
+    denom_F1 = max_price_diff * max_energy_over_horizon
+
+    denom_F2 = max_cdeg * max_energy_over_horizon
+
+    denom_F3 = sum(ev.get('Ecap', 40.0)**2 for ev in evs) * T
+
+    denom_F4 = M
+
+    denom_Omega = max_energy_over_horizon
     def evaluate(individual):
         net_schedule = unflatten(individual, M, T)
         F1 = compute_F1(net_schedule, pi_buy, pi_rev, delta_t)
@@ -339,6 +336,53 @@ def seed_individual_using_fcfs(evs, M, T, delta_t, pi_buy, seed_fraction=0.25):
             chrom[flatten_index(i, t, T)] = preq
     return chrom
 
+def repair_individual_lightweight(individual, evs, M,T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=None, system_params=None):
+    """Lightweight repair that ONLY enforces hard constraints:
+     - Clamp to bounds
+     - Zero power outside EV windows
+     - Enforce occupancy <= num_chargers
+     
+     Does NOT greedily redistribute energy (that's the GA's job).
+     This allows the GA to explore instead of being dominated by greedy repair.
+    """
+    mat = unflatten(individual, M, T)
+    
+    # 1. Clamp to bounds and zero outside windows
+    for i in range(M):
+        ev = evs[i]
+        Tarr = ev.get('T_arr_idx', 0)
+        Tdep = ev.get('T_dep_idx', T)
+        for t in range(T):
+            idx = flatten_index(i, t, T)
+            if t < Tarr or t >= Tdep:
+                # Outside window - must be zero
+                mat[i, t] = 0.0
+            else:
+                # Inside window - clamp to bounds
+                mat[i, t] = max(lower_arr[idx], min(upper_arr[idx], mat[i, t]))
+    
+    # 2. Enforce occupancy per slot (use arrival time for FCFS ordering)
+    for t in range(T):
+        col = mat[:, t]
+        active_idx = np.where(np.abs(col) > 1e-6)[0].tolist()
+        if len(active_idx) <= num_chargers:
+            continue
+        
+        # For FCFS: prioritize by earliest arrival time
+        active_with_arrival = [(idx, evs[idx].get('T_arr_idx', 0)) for idx in active_idx]
+        active_with_arrival_sorted = sorted(active_with_arrival, key=lambda x: x[1])  # earliest first
+        keep_indices = {pair[0] for pair in active_with_arrival_sorted[:num_chargers]}
+        
+        # Zero out EVs that didn't make the cut
+        for idx in active_idx:
+            if idx not in keep_indices:
+                mat[idx, t] = 0.0
+    
+    # Write back
+    flat = mat.flatten().tolist()
+    individual[:] = flat
+    return individual
+
 def repair_individual(individual, evs, M, T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=None, system_params=None):
     """Repair:
      - zero outside windows
@@ -433,7 +477,21 @@ def run_ga(evs, T, delta_t,
     random.seed(42)
     M = len(evs)
     if M == 0:
-        raise ValueError("No admitted EVs passed to run_ga")
+        # Graceful handling: return an empty result instead of raising.
+        print("Warning: run_ga called with 0 EVs. Returning empty result.")
+        best_schedule = np.zeros((0, T))
+        result = {
+            'best_schedule': best_schedule,
+            'J': float('nan'),
+            'F1': float('nan'), 'F2': float('nan'), 'F3': float('nan'), 'F4': float('nan'),
+            'F1_norm': float('nan'), 'F2_norm': float('nan'), 'F3_norm': float('nan'), 'F4_norm': float('nan'),
+            'Si_list': [],
+            'V_SoC': 0.0, 'V_occ': 0.0, 'V_grid': 0.0,
+            'Omega_raw': 0.0, 'Omega_norm': 0.0,
+            'generations_executed': 0,
+            'ga_history': []
+        }
+        return result
     cdeg_arr = [ev.get('cdeg', 0.02) for ev in evs]
     num_chargers = int(num_chargers)
     w1 = weights.get('w1', 0.25)
@@ -470,6 +528,7 @@ def run_ga(evs, T, delta_t,
     toolbox.register("individual", generate_individual)
     toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
+
     eval_fn = make_fitness_function(evs, M, T, delta_t, pi_buy, pi_rev, cdeg_arr, P_max, num_chargers,
                                     w1, w2, w3, w4, alpha1, alpha2, alpha3)
     toolbox.register("evaluate", eval_fn)
@@ -505,9 +564,11 @@ def run_ga(evs, T, delta_t,
     toolbox.register("mutate", safe_mutate)
 
     pop = toolbox.population(n=pop_size)
+    pop = toolbox.population(n=pop_size)
     # FIX C: seeding: deterministic greedy seed + diverse FCFS seeds (with perturbation)
-    seed_count = max(1, int(0.05 * pop_size))  # Limit to 5% of population
-    num_seed = min(seed_count, pop_size)
+    # Use the passed seed_count but cap it to avoid overwhelming random initialization
+    effective_seed_count = min(seed_count, int(0.5 * pop_size))
+    num_seed = max(0, effective_seed_count)
     if num_seed > 0:
         # greedy deterministic baseline
         pop[0][:] = greedy_seed_individual(evs, M, T, delta_t, pi_buy)
@@ -525,8 +586,8 @@ def run_ga(evs, T, delta_t,
 
     # evaluate initial population
     for ind in pop:
-        # repair before evaluating
-        repair_individual(ind, evs, M, T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=pi_rev, system_params=system_params)
+        # repair before evaluating (use lightweight to avoid greedy domination)
+        repair_individual_lightweight(ind, evs, M, T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=pi_rev, system_params=system_params)
     fitnesses = list(map(toolbox.evaluate, pop))
     for ind, fit in zip(pop, fitnesses):
         ind.fitness.values = fit
@@ -582,9 +643,9 @@ def run_ga(evs, T, delta_t,
             except Exception:
                 ind.fitness.valid = False
         
-        # Now repair & evaluate invalid individuals
+        # Now repair & evaluate invalid (use lightweight to avoid greedy domination)
         for ind in offspring:
-            repair_individual(ind, evs, M, T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=pi_rev, system_params=system_params)
+            repair_individual_lightweight(ind, evs, M, T, delta_t, lower_arr, upper_arr, pi_buy, num_chargers, pi_rev=pi_rev, system_params=system_params)
         
         # Evaluate those that were invalid (will now be all offspring)
         invalid_inds = [ind for ind in offspring if not ind.fitness.valid]
@@ -692,6 +753,9 @@ def main():
     parser.add_argument('--delta-t', type=float, default=0.25, help='Slot duration in hours (default 0.25 for 15-min slots to match paper).')
     parser.add_argument('--ngen', type=int, default=300, help='Number of GA generations. Default 300.')
     parser.add_argument('--pop-size', type=int, default=120, help='GA population size. Default 120.')
+    parser.add_argument('--ga-schedule-scope', type=str, default='t0',
+                        choices=['t0', 'full'],
+                        help="GA scheduling scope: 't0' schedule only EVs admitted at t=0 (default), 'full' schedule entire EV pool so GA chooses who to serve.")
     parser.add_argument('--debug-short-run', action='store_true',
                         help='Use short run parameters for debugging (ngen=80, pop_size=60).')
     args = parser.parse_args()
@@ -702,13 +766,38 @@ def main():
         args.pop_size = 60
         print("Debug short-run mode: ngen=80, pop_size=60")
 
-    # Load EVs
-    if not os.path.exists(args.ev_file):
+    # Load EVs (robust lookup: CWD -> script folder -> evs_*.csv in script folder)
+    ev_file = args.ev_file
+    if ev_file is None or not os.path.exists(ev_file):
+        # prefer CWD
+        if os.path.exists('evs.csv'):
+            ev_file = os.path.abspath('evs.csv')
+            print("No --ev-file provided; found 'evs.csv' in current directory and will use it.")
+        elif os.path.exists('evs.json'):
+            ev_file = os.path.abspath('evs.json')
+            print("No --ev-file provided; found 'evs.json' in current directory and will use it.")
+        else:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            candidate_csv = os.path.join(script_dir, 'evs.csv')
+            candidate_json = os.path.join(script_dir, 'evs.json')
+            if os.path.exists(candidate_csv):
+                ev_file = candidate_csv
+                print(f"No --ev-file provided; found 'evs.csv' in script folder '{script_dir}' and will use it.")
+            elif os.path.exists(candidate_json):
+                ev_file = candidate_json
+                print(f"No --ev-file provided; found 'evs.json' in script folder '{script_dir}' and will use it.")
+            else:
+                for fname in os.listdir(script_dir):
+                    if fname.startswith('evs') and fname.endswith('.csv'):
+                        ev_file = os.path.join(script_dir, fname)
+                        print(f"No --ev-file provided; found '{fname}' in script folder '{script_dir}' and will use it.")
+                        break
+    if ev_file is None or not os.path.exists(ev_file):
         print(f"Error: EV file '{args.ev_file}' not found. Exiting.")
         return
-    
-    ev_pool = load_ev_pool(args.ev_file)
-    print(f"Loaded {len(ev_pool)} EVs from {args.ev_file}")
+
+    ev_pool = load_ev_pool(ev_file)
+    print(f"Loaded {len(ev_pool)} EVs from {ev_file}")
 
     # System params
     T = args.T
@@ -772,6 +861,39 @@ def main():
     weights = {'w1': 0.25, 'w2': 0.25, 'w3': 0.25, 'w4': 0.25}
     alpha1, alpha2, alpha3 = 50.0, 50.0, 50.0
 
+    # Fallback: if no EVs were admitted (edge case), schedule entire pool instead
+    if len(admitted_evs) == 0:
+        print("No EVs admitted by FCFS — falling back to GA scheduling over entire EV pool.")
+        admitted_evs = []
+        for ev in ev_pool:
+            T_arr_idx = int(ev.get('T_arr_idx', 0))
+            T_dep_idx = ev.get('T_dep_idx', None)
+            if T_dep_idx is None:
+                slots = max(1, int(math.ceil(ev.get('T_stay', 0.0) / delta_t)))
+                T_dep_idx = min(T, T_arr_idx + slots)
+            else:
+                T_dep_idx = min(T, T_dep_idx)
+            p_ref = ev.get('R_i', ev.get('P_ref', None))
+            if p_ref is None or p_ref <= 0:
+                p_ref = 7.0
+            p_dis_min = ev.get('P_dis_min', None)
+            if p_dis_min is None:
+                p_dis_min = -p_ref
+            admitted_evs.append({
+                'id': ev['id'],
+                'Ecap': ev['Ecap'],
+                'SoC_init': ev['SoC_init'],
+                'SoC_max': ev['SoC_max'],
+                'SoC_min': ev.get('SoC_min', 0.0),
+                'P_ref': p_ref,
+                'P_dis_min': p_dis_min,
+                'T_stay': ev.get('T_stay', 0.0),
+                'T_arr_idx': T_arr_idx,
+                'T_dep_idx': T_dep_idx,
+                'cdeg': ev.get('cdeg', system_params['cdeg'])
+            })
+        print(f"GA will schedule all {len(admitted_evs)} EVs in the pool (fallback)")
+
     # Run GA with user-specified or default parameters
     result = run_ga(evs=admitted_evs, T=T, delta_t=delta_t,
                     pi_buy=pi_buy_arr, pi_rev=pi_rev_arr,
@@ -799,6 +921,10 @@ def main():
     print("Penalties (raw):", result['Omega_raw'], "Penalties_norm:", result['Omega_norm'])
     print("Violations (SoC, occ, grid):", result['V_SoC'], result['V_occ'], result['V_grid'])
     print("Generations executed:", result['generations_executed'])
+
+    # Calculate average user satisfaction
+    avg_user_satisfaction = sum(ev['SoC_init'] for ev in admitted) / len(admitted)
+    print(f"Average user satisfaction: {avg_user_satisfaction:.4f}")
 
     # Additional metrics: averages, waiting time, fairness (Gini)
     M = len(admitted_evs)

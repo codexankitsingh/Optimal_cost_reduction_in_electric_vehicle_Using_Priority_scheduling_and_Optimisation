@@ -95,6 +95,8 @@ python src/ga_scheduler.py --config experiments/configs/config1.json \
 python experiments/run_experiment.py --config experiments/configs/config1.json
 ```
 
+Note: When `--ev-file` is not provided to the pipeline scripts (`pipeline.py`, `pipeline_fcfs.py`, `pipeline_sjf.py`), the scripts now look for `evs.csv`/`evs.json` in the current working directory first. If not found they also check the folder where the script lives (useful when you run the script from the repo parent directory). You can still pass `--ev-file /path/to/file.csv` to explicitly specify the EV data file.
+
 *(If your code is in C++ or mixed, replace `python` commands with compiled binaries or wrappers. Add sample compile/run commands in Makefile.)*
 
 ## Input data format

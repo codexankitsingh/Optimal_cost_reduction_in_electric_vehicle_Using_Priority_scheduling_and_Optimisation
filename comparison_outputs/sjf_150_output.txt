@@ -1,0 +1,387 @@
+Loaded 150 EVs from evs_150.csv
+=== SJF Admission ===
+
+Total EVs: 150, Available chargers: 30
+Admission criteria: Shortest-Job-First (smallest required charging time)
+
+Sorted by job length (hours), arrival, id:
+  EV44: job_len=0.678 h, T_arr_idx=31
+  EV53: job_len=0.840 h, T_arr_idx=67
+  EV58: job_len=0.870 h, T_arr_idx=83
+  EV32: job_len=0.874 h, T_arr_idx=66
+  EV42: job_len=0.916 h, T_arr_idx=28
+  EV106: job_len=0.977 h, T_arr_idx=22
+  EV112: job_len=1.020 h, T_arr_idx=59
+  EV37: job_len=1.023 h, T_arr_idx=30
+  EV60: job_len=1.034 h, T_arr_idx=66
+  EV74: job_len=1.089 h, T_arr_idx=40
+  EV142: job_len=1.090 h, T_arr_idx=34
+  EV6: job_len=1.129 h, T_arr_idx=78
+  EV70: job_len=1.131 h, T_arr_idx=70
+  EV87: job_len=1.143 h, T_arr_idx=75
+  EV137: job_len=1.147 h, T_arr_idx=77
+  EV107: job_len=1.149 h, T_arr_idx=46
+  EV140: job_len=1.287 h, T_arr_idx=74
+  EV65: job_len=1.291 h, T_arr_idx=33
+  EV99: job_len=1.295 h, T_arr_idx=31
+  EV92: job_len=1.314 h, T_arr_idx=89
+  EV15: job_len=1.323 h, T_arr_idx=18
+  EV80: job_len=1.327 h, T_arr_idx=43
+  EV5: job_len=1.372 h, T_arr_idx=12
+  EV78: job_len=1.400 h, T_arr_idx=42
+  EV41: job_len=1.434 h, T_arr_idx=33
+  EV97: job_len=1.435 h, T_arr_idx=80
+  EV85: job_len=1.436 h, T_arr_idx=33
+  EV38: job_len=1.445 h, T_arr_idx=67
+  EV125: job_len=1.477 h, T_arr_idx=75
+  EV120: job_len=1.491 h, T_arr_idx=69
+  EV135: job_len=1.505 h, T_arr_idx=83
+  EV146: job_len=1.506 h, T_arr_idx=14
+  EV22: job_len=1.516 h, T_arr_idx=44
+  EV134: job_len=1.524 h, T_arr_idx=46
+  EV26: job_len=1.543 h, T_arr_idx=22
+  EV141: job_len=1.546 h, T_arr_idx=90
+  EV123: job_len=1.564 h, T_arr_idx=65
+  EV147: job_len=1.577 h, T_arr_idx=66
+  EV88: job_len=1.600 h, T_arr_idx=83
+  EV1: job_len=1.622 h, T_arr_idx=71
+  EV51: job_len=1.669 h, T_arr_idx=72
+  EV83: job_len=1.684 h, T_arr_idx=71
+  EV34: job_len=1.693 h, T_arr_idx=29
+  EV72: job_len=1.723 h, T_arr_idx=33
+  EV29: job_len=1.732 h, T_arr_idx=28
+  EV118: job_len=1.738 h, T_arr_idx=48
+  EV109: job_len=1.743 h, T_arr_idx=72
+  EV3: job_len=1.794 h, T_arr_idx=65
+  EV101: job_len=1.800 h, T_arr_idx=35
+  EV145: job_len=1.831 h, T_arr_idx=28
+  EV40: job_len=1.882 h, T_arr_idx=22
+  EV63: job_len=1.923 h, T_arr_idx=83
+  EV64: job_len=1.963 h, T_arr_idx=69
+  EV108: job_len=1.980 h, T_arr_idx=76
+  EV113: job_len=1.984 h, T_arr_idx=38
+  EV48: job_len=1.991 h, T_arr_idx=70
+  EV7: job_len=2.001 h, T_arr_idx=63
+  EV62: job_len=2.013 h, T_arr_idx=30
+  EV8: job_len=2.013 h, T_arr_idx=51
+  EV57: job_len=2.019 h, T_arr_idx=33
+  EV95: job_len=2.067 h, T_arr_idx=77
+  EV12: job_len=2.070 h, T_arr_idx=27
+  EV59: job_len=2.107 h, T_arr_idx=32
+  EV66: job_len=2.114 h, T_arr_idx=65
+  EV111: job_len=2.196 h, T_arr_idx=25
+  EV143: job_len=2.216 h, T_arr_idx=28
+  EV103: job_len=2.256 h, T_arr_idx=68
+  EV10: job_len=2.271 h, T_arr_idx=59
+  EV47: job_len=2.309 h, T_arr_idx=28
+  EV150: job_len=2.328 h, T_arr_idx=24
+  EV13: job_len=2.340 h, T_arr_idx=65
+  EV84: job_len=2.347 h, T_arr_idx=64
+  EV139: job_len=2.353 h, T_arr_idx=60
+  EV56: job_len=2.357 h, T_arr_idx=67
+  EV133: job_len=2.375 h, T_arr_idx=58
+  EV31: job_len=2.447 h, T_arr_idx=21
+  EV116: job_len=2.449 h, T_arr_idx=70
+  EV115: job_len=2.450 h, T_arr_idx=38
+  EV30: job_len=2.462 h, T_arr_idx=36
+  EV89: job_len=2.480 h, T_arr_idx=27
+  EV81: job_len=2.484 h, T_arr_idx=68
+  EV104: job_len=2.499 h, T_arr_idx=39
+  EV18: job_len=2.500 h, T_arr_idx=44
+  EV75: job_len=2.519 h, T_arr_idx=84
+  EV127: job_len=2.523 h, T_arr_idx=59
+  EV71: job_len=2.587 h, T_arr_idx=32
+  EV16: job_len=2.592 h, T_arr_idx=29
+  EV117: job_len=2.594 h, T_arr_idx=78
+  EV55: job_len=2.595 h, T_arr_idx=65
+  EV76: job_len=2.602 h, T_arr_idx=68
+  EV122: job_len=2.624 h, T_arr_idx=26
+  EV79: job_len=2.686 h, T_arr_idx=80
+  EV19: job_len=2.709 h, T_arr_idx=45
+  EV25: job_len=2.718 h, T_arr_idx=29
+  EV69: job_len=2.745 h, T_arr_idx=16
+  EV46: job_len=2.827 h, T_arr_idx=76
+  EV144: job_len=2.842 h, T_arr_idx=35
+  EV9: job_len=2.883 h, T_arr_idx=81
+  EV67: job_len=2.896 h, T_arr_idx=29
+  EV91: job_len=2.898 h, T_arr_idx=45
+  EV131: job_len=2.910 h, T_arr_idx=21
+  EV93: job_len=2.928 h, T_arr_idx=59
+  EV17: job_len=2.934 h, T_arr_idx=26
+  EV105: job_len=3.000 h, T_arr_idx=73
+  EV33: job_len=3.017 h, T_arr_idx=30
+  EV126: job_len=3.043 h, T_arr_idx=82
+  EV148: job_len=3.050 h, T_arr_idx=60
+  EV86: job_len=3.051 h, T_arr_idx=71
+  EV82: job_len=3.055 h, T_arr_idx=76
+  EV100: job_len=3.058 h, T_arr_idx=32
+  EV110: job_len=3.061 h, T_arr_idx=74
+  EV77: job_len=3.104 h, T_arr_idx=68
+  EV54: job_len=3.109 h, T_arr_idx=82
+  EV121: job_len=3.123 h, T_arr_idx=18
+  EV24: job_len=3.126 h, T_arr_idx=74
+  EV52: job_len=3.159 h, T_arr_idx=33
+  EV23: job_len=3.180 h, T_arr_idx=34
+  EV21: job_len=3.194 h, T_arr_idx=75
+  EV27: job_len=3.235 h, T_arr_idx=38
+  EV20: job_len=3.274 h, T_arr_idx=78
+  EV14: job_len=3.346 h, T_arr_idx=27
+  EV149: job_len=3.348 h, T_arr_idx=51
+  EV45: job_len=3.394 h, T_arr_idx=71
+  EV98: job_len=3.403 h, T_arr_idx=28
+  EV68: job_len=3.484 h, T_arr_idx=64
+  EV39: job_len=3.541 h, T_arr_idx=70
+  EV50: job_len=3.568 h, T_arr_idx=80
+  EV119: job_len=3.608 h, T_arr_idx=81
+  EV28: job_len=3.667 h, T_arr_idx=54
+  EV129: job_len=3.783 h, T_arr_idx=27
+  EV4: job_len=3.791 h, T_arr_idx=58
+  EV96: job_len=3.885 h, T_arr_idx=32
+  EV61: job_len=3.991 h, T_arr_idx=75
+  EV49: job_len=3.996 h, T_arr_idx=67
+  EV94: job_len=4.166 h, T_arr_idx=28
+  EV11: job_len=4.231 h, T_arr_idx=82
+  EV114: job_len=4.232 h, T_arr_idx=34
+  EV2: job_len=4.332 h, T_arr_idx=29
+  EV90: job_len=4.544 h, T_arr_idx=72
+  EV73: job_len=4.686 h, T_arr_idx=82
+  EV102: job_len=4.729 h, T_arr_idx=91
+  EV124: job_len=4.937 h, T_arr_idx=37
+  EV35: job_len=4.992 h, T_arr_idx=37
+  EV36: job_len=5.025 h, T_arr_idx=40
+  EV128: job_len=5.066 h, T_arr_idx=80
+  EV132: job_len=5.088 h, T_arr_idx=33
+  EV136: job_len=5.115 h, T_arr_idx=30
+  EV43: job_len=5.192 h, T_arr_idx=16
+  EV138: job_len=5.496 h, T_arr_idx=76
+  EV130: job_len=5.681 h, T_arr_idx=72
+
+Admitted EVs (first 30): EV44, EV53, EV58, EV32, EV42, EV106, EV112, EV37, EV60, EV74, EV142, EV6, EV70, EV87, EV137, EV107, EV140, EV65, EV99, EV92, EV15, EV80, EV5, EV78, EV41, EV97, EV85, EV38, EV125, EV120
+Waiting EVs: EV135, EV146, EV22, EV134, EV26, EV141, EV123, EV147, EV88, EV1, EV51, EV83, EV34, EV72, EV29, EV118, EV109, EV3, EV101, EV145, EV40, EV63, EV64, EV108, EV113, EV48, EV7, EV62, EV8, EV57, EV95, EV12, EV59, EV66, EV111, EV143, EV103, EV10, EV47, EV150, EV13, EV84, EV139, EV56, EV133, EV31, EV116, EV115, EV30, EV89, EV81, EV104, EV18, EV75, EV127, EV71, EV16, EV117, EV55, EV76, EV122, EV79, EV19, EV25, EV69, EV46, EV144, EV9, EV67, EV91, EV131, EV93, EV17, EV105, EV33, EV126, EV148, EV86, EV82, EV100, EV110, EV77, EV54, EV121, EV24, EV52, EV23, EV21, EV27, EV20, EV14, EV149, EV45, EV98, EV68, EV39, EV50, EV119, EV28, EV129, EV4, EV96, EV61, EV49, EV94, EV11, EV114, EV2, EV90, EV73, EV102, EV124, EV35, EV36, EV128, EV132, EV136, EV43, EV138, EV130
+
+Average user satisfaction: 0.2144
+
+SJF admitted 30 EVs (first 30 by job length)
+DEBUG: initial population fitness validity counts: 100/100
+GA start: pop_size=100, ngen=200, M=30, T=48, indpb=0.020833
+Initial best J = -0.17722141
+DEBUG Gen 1: invalid_inds_count=100
+Gen 1 best J -0.17722141 (mean: 0.08748217, std: 0.35871314, diversity: 166.8233, no improve: 1)
+DEBUG Gen 2: invalid_inds_count=100
+DEBUG Gen 3: invalid_inds_count=100
+Gen 3 improved best J -> -0.17796657 (mean: -0.17387204, std: 0.00222550, diversity: 61.7413)
+DEBUG Gen 4: invalid_inds_count=100
+Gen 4 improved best J -> -0.17798406 (mean: -0.17555248, std: 0.00104131, diversity: 44.7093)
+DEBUG Gen 5: invalid_inds_count=100
+Gen 5 improved best J -> -0.17808150 (mean: -0.17653592, std: 0.00081208, diversity: 39.4876)
+Gen 6 improved best J -> -0.17860887 (mean: -0.17718359, std: 0.00060009, diversity: 34.7138)
+Gen 7 improved best J -> -0.17880340 (mean: -0.17770708, std: 0.00047348, diversity: 35.7727)
+Gen 8 improved best J -> -0.17891333 (mean: -0.17813749, std: 0.00034619, diversity: 34.1372)
+Gen 9 improved best J -> -0.17895822 (mean: -0.17841340, std: 0.00031070, diversity: 36.4853)
+DEBUG Gen 10: invalid_inds_count=100
+Gen 10 improved best J -> -0.17972087 (mean: -0.17871730, std: 0.00027625, diversity: 40.3627)
+Gen 12 improved best J -> -0.18004324 (mean: -0.17915549, std: 0.00032484, diversity: 39.2478)
+Gen 13 improved best J -> -0.18036161 (mean: -0.17946914, std: 0.00032599, diversity: 39.6382)
+Gen 14 improved best J -> -0.18051608 (mean: -0.17972269, std: 0.00026912, diversity: 39.2043)
+Gen 15 improved best J -> -0.18060432 (mean: -0.17997146, std: 0.00028873, diversity: 41.2529)
+Gen 16 improved best J -> -0.18081098 (mean: -0.18020259, std: 0.00028356, diversity: 40.7745)
+Gen 17 improved best J -> -0.18107601 (mean: -0.18045733, std: 0.00024767, diversity: 39.0762)
+Gen 18 improved best J -> -0.18120872 (mean: -0.18065574, std: 0.00023749, diversity: 37.6183)
+Gen 19 improved best J -> -0.18144100 (mean: -0.18082867, std: 0.00022639, diversity: 37.3061)
+DEBUG Gen 20: invalid_inds_count=100
+Gen 20 improved best J -> -0.18148546 (mean: -0.18101072, std: 0.00020078, diversity: 34.9767)
+Gen 21 improved best J -> -0.18179337 (mean: -0.18119613, std: 0.00020720, diversity: 34.2215)
+Gen 22 improved best J -> -0.18188817 (mean: -0.18137049, std: 0.00018997, diversity: 32.7799)
+Gen 23 improved best J -> -0.18201973 (mean: -0.18153807, std: 0.00019159, diversity: 29.1416)
+Gen 24 improved best J -> -0.18207214 (mean: -0.18168823, std: 0.00017680, diversity: 28.8826)
+Gen 25 improved best J -> -0.18225084 (mean: -0.18181731, std: 0.00017611, diversity: 24.0018)
+Gen 26 improved best J -> -0.18238165 (mean: -0.18196372, std: 0.00016529, diversity: 20.1330)
+Gen 27 improved best J -> -0.18245304 (mean: -0.18208611, std: 0.00017402, diversity: 21.7188)
+Gen 28 improved best J -> -0.18253293 (mean: -0.18223352, std: 0.00014774, diversity: 17.6097)
+Gen 29 improved best J -> -0.18265610 (mean: -0.18233369, std: 0.00015593, diversity: 19.2354)
+DEBUG Gen 30: invalid_inds_count=100
+Gen 30 improved best J -> -0.18277872 (mean: -0.18245549, std: 0.00012778, diversity: 18.2783)
+Gen 31 improved best J -> -0.18289070 (mean: -0.18254956, std: 0.00013655, diversity: 18.1680)
+Gen 32 improved best J -> -0.18305626 (mean: -0.18264540, std: 0.00013502, diversity: 18.6578)
+Gen 33 improved best J -> -0.18312150 (mean: -0.18272633, std: 0.00014239, diversity: 19.7948)
+Gen 35 improved best J -> -0.18333870 (mean: -0.18294349, std: 0.00015051, diversity: 20.5245)
+Gen 36 improved best J -> -0.18336416 (mean: -0.18304416, std: 0.00027548, diversity: 21.6470)
+Gen 37 improved best J -> -0.18343162 (mean: -0.18284164, std: 0.00183895, diversity: 21.7579)
+Gen 38 improved best J -> -0.18350517 (mean: -0.18287361, std: 0.00223687, diversity: 22.9459)
+Gen 39 improved best J -> -0.18377330 (mean: -0.18327832, std: 0.00039659, diversity: 21.7788)
+DEBUG Gen 40: invalid_inds_count=100
+Gen 40 improved best J -> -0.18379004 (mean: -0.18332054, std: 0.00099855, diversity: 22.5716)
+Gen 41 improved best J -> -0.18386601 (mean: -0.18264066, std: 0.00368277, diversity: 21.4340)
+Gen 42 improved best J -> -0.18398599 (mean: -0.18274098, std: 0.00296039, diversity: 20.4029)
+Gen 43 improved best J -> -0.18403252 (mean: -0.18353700, std: 0.00094693, diversity: 19.5224)
+Gen 44 improved best J -> -0.18411428 (mean: -0.18295044, std: 0.00295927, diversity: 19.9334)
+Gen 45 improved best J -> -0.18422344 (mean: -0.18190841, std: 0.00652355, diversity: 19.0702)
+Gen 46 improved best J -> -0.18434758 (mean: -0.18354986, std: 0.00204271, diversity: 17.5766)
+Gen 47 improved best J -> -0.18442808 (mean: -0.18317565, std: 0.00333561, diversity: 18.7830)
+Gen 48 improved best J -> -0.18460584 (mean: -0.18333672, std: 0.00382601, diversity: 19.2905)
+Gen 49 improved best J -> -0.18461959 (mean: -0.18341701, std: 0.00304205, diversity: 19.7155)
+DEBUG Gen 50: invalid_inds_count=100
+Gen 50 improved best J -> -0.18467638 (mean: -0.18385175, std: 0.00150214, diversity: 20.3708)
+Gen 51 improved best J -> -0.18478400 (mean: -0.18403248, std: 0.00132153, diversity: 18.5968)
+Gen 52 improved best J -> -0.18482828 (mean: -0.18403191, std: 0.00189109, diversity: 17.7686)
+Gen 53 improved best J -> -0.18494150 (mean: -0.18396430, std: 0.00299438, diversity: 17.6224)
+Gen 54 improved best J -> -0.18525387 (mean: -0.18434631, std: 0.00174440, diversity: 18.6700)
+Gen 55 improved best J -> -0.18531793 (mean: -0.18455067, std: 0.00104609, diversity: 17.2510)
+Gen 56 improved best J -> -0.18536336 (mean: -0.18458462, std: 0.00114619, diversity: 17.4537)
+Gen 57 improved best J -> -0.18540289 (mean: -0.18478954, std: 0.00084782, diversity: 17.4713)
+Gen 58 improved best J -> -0.18555292 (mean: -0.18496062, std: 0.00079781, diversity: 17.4173)
+Gen 59 improved best J -> -0.18562629 (mean: -0.18493730, std: 0.00127404, diversity: 16.5317)
+DEBUG Gen 60: invalid_inds_count=100
+Gen 60 best J -0.18562629 (mean: -0.18488653, std: 0.00168761, diversity: 14.5512, no improve: 1)
+Gen 61 improved best J -> -0.18570634 (mean: -0.18419507, std: 0.00474373, diversity: 15.4372)
+Gen 62 improved best J -> -0.18571238 (mean: -0.18459340, std: 0.00338717, diversity: 14.8204)
+Gen 63 improved best J -> -0.18580859 (mean: -0.18519320, std: 0.00106791, diversity: 15.8613)
+Gen 65 improved best J -> -0.18586990 (mean: -0.18517793, std: 0.00186101, diversity: 14.9631)
+Gen 66 improved best J -> -0.18598170 (mean: -0.18531954, std: 0.00174624, diversity: 15.4639)
+Gen 67 improved best J -> -0.18601086 (mean: -0.18514789, std: 0.00171744, diversity: 15.3299)
+Gen 68 improved best J -> -0.18602886 (mean: -0.18511783, std: 0.00229523, diversity: 15.4873)
+Gen 69 improved best J -> -0.18604831 (mean: -0.18554013, std: 0.00151172, diversity: 15.2051)
+DEBUG Gen 70: invalid_inds_count=100
+Gen 70 best J -0.18604831 (mean: -0.18512445, std: 0.00302458, diversity: 15.5663, no improve: 1)
+Gen 71 improved best J -> -0.18613046 (mean: -0.18527644, std: 0.00310798, diversity: 15.8834)
+Gen 72 improved best J -> -0.18618177 (mean: -0.18570932, std: 0.00106767, diversity: 15.5375)
+Gen 73 improved best J -> -0.18623809 (mean: -0.18528918, std: 0.00298722, diversity: 16.4975)
+Gen 74 improved best J -> -0.18627166 (mean: -0.18542991, std: 0.00271026, diversity: 16.7223)
+Gen 75 improved best J -> -0.18629980 (mean: -0.18469798, std: 0.00472808, diversity: 17.4621)
+Gen 76 improved best J -> -0.18635654 (mean: -0.18527541, std: 0.00331072, diversity: 16.1070)
+Gen 77 improved best J -> -0.18649659 (mean: -0.18579774, std: 0.00155696, diversity: 16.6983)
+Gen 79 improved best J -> -0.18656331 (mean: -0.18608868, std: 0.00098708, diversity: 14.5851)
+DEBUG Gen 80: invalid_inds_count=100
+Gen 80 improved best J -> -0.18660777 (mean: -0.18565389, std: 0.00376973, diversity: 16.5465)
+Gen 81 improved best J -> -0.18668719 (mean: -0.18628489, std: 0.00059339, diversity: 15.3758)
+Gen 82 improved best J -> -0.18674575 (mean: -0.18629981, std: 0.00070154, diversity: 15.2241)
+Gen 83 improved best J -> -0.18675021 (mean: -0.18583146, std: 0.00305190, diversity: 14.6947)
+Gen 84 improved best J -> -0.18676440 (mean: -0.18584196, std: 0.00343829, diversity: 13.1774)
+Gen 85 improved best J -> -0.18678582 (mean: -0.18481420, std: 0.00561240, diversity: 14.7462)
+Gen 86 improved best J -> -0.18694414 (mean: -0.18564573, std: 0.00451964, diversity: 15.2623)
+Gen 87 improved best J -> -0.18696159 (mean: -0.18562609, std: 0.00314416, diversity: 14.5143)
+Gen 88 improved best J -> -0.18697655 (mean: -0.18605513, std: 0.00229953, diversity: 14.8763)
+Gen 89 improved best J -> -0.18718261 (mean: -0.18622210, std: 0.00186116, diversity: 11.5820)
+DEBUG Gen 90: invalid_inds_count=100
+Gen 90 best J -0.18718261 (mean: -0.18648498, std: 0.00122961, diversity: 12.2075, no improve: 1)
+Gen 91 improved best J -> -0.18752492 (mean: -0.18625423, std: 0.00274498, diversity: 13.8423)
+Gen 93 improved best J -> -0.18752922 (mean: -0.18667209, std: 0.00149620, diversity: 15.8736)
+Gen 94 improved best J -> -0.18754955 (mean: -0.18622917, std: 0.00271527, diversity: 15.5487)
+Gen 95 best J -0.18754955 (mean: -0.18571699, std: 0.00451390, diversity: 16.4566, no improve: 1)
+Gen 97 improved best J -> -0.18761159 (mean: -0.18528486, std: 0.00550159, diversity: 16.4313)
+Gen 98 improved best J -> -0.18763610 (mean: -0.18564066, std: 0.00618976, diversity: 14.4963)
+Gen 99 improved best J -> -0.18771395 (mean: -0.18624282, std: 0.00343438, diversity: 14.5000)
+DEBUG Gen 100: invalid_inds_count=100
+Gen 100 best J -0.18771395 (mean: -0.18703924, std: 0.00231129, diversity: 14.0676, no improve: 1)
+Gen 101 improved best J -> -0.18780368 (mean: -0.18562773, std: 0.00630999, diversity: 12.8602)
+Gen 103 improved best J -> -0.18783392 (mean: -0.18727886, std: 0.00131910, diversity: 12.6991)
+Gen 104 improved best J -> -0.18791032 (mean: -0.18520452, std: 0.00794931, diversity: 13.3322)
+Gen 105 best J -0.18791032 (mean: -0.18739339, std: 0.00129251, diversity: 11.0575, no improve: 1)
+Gen 106 improved best J -> -0.18792259 (mean: -0.18748996, std: 0.00150012, diversity: 10.8372)
+Gen 107 improved best J -> -0.18796411 (mean: -0.18672935, std: 0.00413841, diversity: 10.7411)
+Gen 109 improved best J -> -0.18801313 (mean: -0.18674182, std: 0.00572251, diversity: 9.9363)
+DEBUG Gen 110: invalid_inds_count=100
+Gen 110 improved best J -> -0.18803226 (mean: -0.18678109, std: 0.00433278, diversity: 10.1170)
+Gen 111 improved best J -> -0.18809519 (mean: -0.18705456, std: 0.00279564, diversity: 10.0432)
+Gen 112 improved best J -> -0.18809644 (mean: -0.18620354, std: 0.00583610, diversity: 9.7789)
+Gen 113 improved best J -> -0.18812750 (mean: -0.18683173, std: 0.00313587, diversity: 10.8094)
+Gen 115 best J -0.18812750 (mean: -0.18624116, std: 0.00517143, diversity: 10.6875, no improve: 2)
+Gen 116 improved best J -> -0.18814932 (mean: -0.18634712, std: 0.00631238, diversity: 9.9812)
+Gen 117 improved best J -> -0.18819306 (mean: -0.18679211, std: 0.00388875, diversity: 11.1447)
+Gen 118 improved best J -> -0.18824614 (mean: -0.18633769, std: 0.00515604, diversity: 11.7424)
+Gen 119 improved best J -> -0.18825358 (mean: -0.18678914, std: 0.00518626, diversity: 9.9159)
+DEBUG Gen 120: invalid_inds_count=100
+Gen 120 improved best J -> -0.18830988 (mean: -0.18760795, std: 0.00226026, diversity: 10.6037)
+Gen 123 improved best J -> -0.18832068 (mean: -0.18606587, std: 0.00544944, diversity: 10.4586)
+Gen 124 improved best J -> -0.18835589 (mean: -0.18727133, std: 0.00341307, diversity: 10.9642)
+Gen 125 improved best J -> -0.18836476 (mean: -0.18744700, std: 0.00292234, diversity: 10.2985)
+Gen 126 improved best J -> -0.18839822 (mean: -0.18603204, std: 0.00658697, diversity: 9.1512)
+Gen 127 improved best J -> -0.18843616 (mean: -0.18663699, std: 0.00643406, diversity: 10.4328)
+Gen 128 improved best J -> -0.18843620 (mean: -0.18627396, std: 0.00609682, diversity: 10.4887)
+Gen 129 improved best J -> -0.18846081 (mean: -0.18727796, std: 0.00325592, diversity: 10.8975)
+DEBUG Gen 130: invalid_inds_count=100
+Gen 130 improved best J -> -0.18846715 (mean: -0.18709134, std: 0.00384151, diversity: 10.1840)
+Gen 132 improved best J -> -0.18848489 (mean: -0.18723837, std: 0.00260689, diversity: 10.0386)
+Gen 133 improved best J -> -0.18850137 (mean: -0.18602041, std: 0.00736260, diversity: 9.6677)
+Gen 134 improved best J -> -0.18850543 (mean: -0.18682329, std: 0.00403501, diversity: 8.7214)
+Gen 135 best J -0.18850543 (mean: -0.18702906, std: 0.00420961, diversity: 9.1343, no improve: 1)
+Gen 137 improved best J -> -0.18852293 (mean: -0.18638423, std: 0.00545249, diversity: 8.8916)
+Gen 138 improved best J -> -0.18856228 (mean: -0.18632039, std: 0.00716607, diversity: 8.6917)
+Gen 139 improved best J -> -0.18858440 (mean: -0.18586386, std: 0.00844187, diversity: 8.9474)
+DEBUG Gen 140: invalid_inds_count=100
+Gen 140 improved best J -> -0.18860298 (mean: -0.18636901, std: 0.00620744, diversity: 8.8049)
+Gen 142 improved best J -> -0.18862079 (mean: -0.18426746, std: 0.00869321, diversity: 9.5127)
+Gen 143 improved best J -> -0.18862657 (mean: -0.18624244, std: 0.00550023, diversity: 8.3629)
+Gen 144 improved best J -> -0.18866436 (mean: -0.18608825, std: 0.00625185, diversity: 7.9366)
+Gen 145 best J -0.18866436 (mean: -0.18656458, std: 0.00533301, diversity: 9.0329, no improve: 1)
+Gen 146 improved best J -> -0.18867013 (mean: -0.18679033, std: 0.00458937, diversity: 8.5769)
+Gen 148 improved best J -> -0.18867593 (mean: -0.18657948, std: 0.00514766, diversity: 8.2688)
+DEBUG Gen 150: invalid_inds_count=100
+Gen 150 improved best J -> -0.18868271 (mean: -0.18451038, std: 0.00835103, diversity: 8.8022)
+Gen 151 improved best J -> -0.18868340 (mean: -0.18716395, std: 0.00393922, diversity: 8.4261)
+Gen 152 improved best J -> -0.18868365 (mean: -0.18586167, std: 0.00752749, diversity: 8.2446)
+Gen 153 improved best J -> -0.18869638 (mean: -0.18674911, std: 0.00477835, diversity: 9.3563)
+Gen 155 improved best J -> -0.18870339 (mean: -0.18590609, std: 0.00716902, diversity: 6.9251)
+Gen 156 improved best J -> -0.18870841 (mean: -0.18558900, std: 0.00746386, diversity: 7.4009)
+Gen 157 improved best J -> -0.18871946 (mean: -0.18671543, std: 0.00479512, diversity: 8.0895)
+Gen 159 improved best J -> -0.18872205 (mean: -0.18633910, std: 0.00580460, diversity: 8.7173)
+DEBUG Gen 160: invalid_inds_count=100
+Gen 160 improved best J -> -0.18873436 (mean: -0.18532025, std: 0.00856961, diversity: 8.0475)
+Gen 161 improved best J -> -0.18873800 (mean: -0.18384377, std: 0.01322401, diversity: 8.4453)
+Gen 162 improved best J -> -0.18874028 (mean: -0.18730032, std: 0.00368194, diversity: 7.9356)
+Gen 163 improved best J -> -0.18875435 (mean: -0.18413632, std: 0.01161630, diversity: 8.4582)
+Gen 165 best J -0.18875435 (mean: -0.18556965, std: 0.00738819, diversity: 7.8948, no improve: 2)
+Gen 166 improved best J -> -0.18876772 (mean: -0.18556302, std: 0.00775940, diversity: 6.6899)
+Gen 167 improved best J -> -0.18877216 (mean: -0.18685550, std: 0.00487279, diversity: 7.8204)
+Gen 168 improved best J -> -0.18877504 (mean: -0.18422429, std: 0.01071703, diversity: 6.1820)
+Gen 169 improved best J -> -0.18878293 (mean: -0.18570681, std: 0.00864970, diversity: 6.0049)
+DEBUG Gen 170: invalid_inds_count=100
+Gen 170 improved best J -> -0.18878516 (mean: -0.18696736, std: 0.00460612, diversity: 6.4669)
+Gen 172 improved best J -> -0.18879542 (mean: -0.18691920, std: 0.00485925, diversity: 5.4232)
+Gen 173 improved best J -> -0.18880211 (mean: -0.18716144, std: 0.00476631, diversity: 4.0832)
+Gen 174 improved best J -> -0.18880438 (mean: -0.18521937, std: 0.00998902, diversity: 5.1297)
+Gen 175 improved best J -> -0.18880834 (mean: -0.18638221, std: 0.00684651, diversity: 4.0614)
+Gen 176 improved best J -> -0.18881070 (mean: -0.18690793, std: 0.00581182, diversity: 3.9078)
+Gen 177 improved best J -> -0.18881761 (mean: -0.18450936, std: 0.01034873, diversity: 5.5704)
+Gen 179 improved best J -> -0.18883182 (mean: -0.18482291, std: 0.00983139, diversity: 4.1880)
+DEBUG Gen 180: invalid_inds_count=100
+Gen 180 best J -0.18883182 (mean: -0.18547111, std: 0.00939108, diversity: 4.1634, no improve: 1)
+Gen 181 improved best J -> -0.18883486 (mean: -0.18583566, std: 0.00800529, diversity: 5.4567)
+Gen 183 improved best J -> -0.18884107 (mean: -0.18638793, std: 0.00829648, diversity: 2.9867)
+Gen 185 improved best J -> -0.18885536 (mean: -0.18675971, std: 0.00549260, diversity: 5.1961)
+Gen 186 improved best J -> -0.18887268 (mean: -0.18567176, std: 0.00744598, diversity: 4.1801)
+Gen 187 improved best J -> -0.18887987 (mean: -0.18779687, std: 0.00297231, diversity: 4.5881)
+Gen 188 improved best J -> -0.18889416 (mean: -0.18545780, std: 0.00897537, diversity: 5.8113)
+Gen 189 improved best J -> -0.18889951 (mean: -0.18612363, std: 0.00831124, diversity: 4.7495)
+DEBUG Gen 190: invalid_inds_count=100
+Gen 190 improved best J -> -0.18890191 (mean: -0.18624279, std: 0.00712766, diversity: 4.0860)
+Gen 191 improved best J -> -0.18891172 (mean: -0.18521985, std: 0.01155595, diversity: 5.4094)
+Gen 192 improved best J -> -0.18891287 (mean: -0.18574728, std: 0.00768681, diversity: 6.7559)
+Gen 193 improved best J -> -0.18891884 (mean: -0.18492978, std: 0.00955553, diversity: 5.9195)
+Gen 194 improved best J -> -0.18892197 (mean: -0.18590545, std: 0.00754365, diversity: 6.5654)
+Gen 195 improved best J -> -0.18892878 (mean: -0.18661894, std: 0.00619562, diversity: 7.0806)
+Gen 196 improved best J -> -0.18893140 (mean: -0.18579058, std: 0.00819670, diversity: 6.3964)
+Gen 198 improved best J -> -0.18894737 (mean: -0.18468023, std: 0.00846164, diversity: 6.4105)
+Gen 199 improved best J -> -0.18894821 (mean: -0.18694728, std: 0.00538844, diversity: 4.9324)
+DEBUG Gen 200: invalid_inds_count=100
+Gen 200 improved best J -> -0.18894903 (mean: -0.18483727, std: 0.01041038, diversity: 3.9322)
+Saved GA history to: /Users/ankitkumarsingh/Desktop/MMTP/Optimal_cost_reduction_in_electric_vehicle_Using_Priority_scheduling_and_Optimisation/ga_history_sjf.csv
+
+=== GA Result Summary ===
+Objective J (normalized weighted): -0.18894903140965963
+F1 (cost, raw) : -13.942927756068288 F1_norm: -0.030704261041606288
+F2 (deg, raw): 3.749055785579486 F2_norm: 0.009680332711285818
+F3 (var, raw): 4737.265838993126 F3_norm: 0.000337702624960348
+F4 (satisfaction, raw): 22.05329699873346 F4_norm: 0.7351098999332784
+Penalties (raw): 0.0 Penalties_norm: 0.0
+Violations (SoC, occ, grid): 0.0 0.0 0.0
+Generations executed: 200
+
+--- Derived Metrics ---
+Average net energy cost per EV: -0.4647642585356096
+Average battery degradation cost per EV: 0.12496852618598288
+Grid load variance (raw F3): 4737.265838993126
+Average user satisfaction (admitted EVs): 0.7351098999577821
+Average waiting time (admitted EVs): 0.000 hours
+Average waiting time (all EVs in pool): 4.873 hours
+Fairness (Gini on delivered kWh): -1.381500624512173
