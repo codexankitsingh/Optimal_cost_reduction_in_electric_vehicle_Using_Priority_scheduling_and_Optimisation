@@ -2,18 +2,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from pathlib import Path
 
 # Load results
 def load_results():
-    if not os.path.exists('comparison_results.csv'):
-        print("Error: comparison_results.csv not found!")
+    # Get the directory where this script is located
+    script_dir = Path(__file__).parent
+    csv_path = script_dir / 'comparison_results.csv'
+    
+    if not csv_path.exists():
+        print(f"Error: {csv_path} not found!")
         print("Please run run_pipeline_comparison.py first.")
         return None
     
-    df = pd.read_csv('comparison_results.csv')
+    df = pd.read_csv(csv_path)
     return df
 
-def plot_metric_comparison(df, metric_col, ylabel, title, filename, lower_is_better=True):
+def plot_metric_comparison(df, metric_col, ylabel, title, filename, script_dir, lower_is_better=True):
     """Plot comparison of a metric across pipelines and EV counts."""
     plt.figure(figsize=(12, 7))
     
@@ -48,13 +53,14 @@ def plot_metric_comparison(df, metric_col, ylabel, title, filename, lower_is_bet
         best_idx = df.groupby('ev_count')[metric_col].idxmax()
     
     plt.tight_layout()
-    plt.savefig(filename, dpi=150, bbox_inches='tight')
-    print(f"✓ Saved {filename}")
+    output_path = script_dir / filename
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    print(f"✓ Saved {output_path}")
     plt.close()
 
-def plot_combined_comparison(df):
-    """Create a 2x2 subplot with all metrics."""
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
+def plot_combined_comparison(df, script_dir):
+    """Create a 3x2 subplot with all key metrics."""
+    fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, figsize=(16, 18))
     
     pipelines = df['pipeline'].unique()
     ev_counts = sorted(df['ev_count'].unique())
@@ -70,7 +76,7 @@ def plot_combined_comparison(df):
                 markersize=7, label=pipeline, color=colors[pipeline])
     ax1.set_xlabel('Number of EVs', fontweight='bold')
     ax1.set_ylabel('Avg Cost per EV ($)', fontweight='bold')
-    ax1.set_title('Average Net Energy Cost Comparison', fontweight='bold', pad=10)
+    ax1.set_title('Average Net Energy Cost', fontweight='bold', pad=10)
     ax1.legend(fontsize=10)
     ax1.grid(True, alpha=0.3, linestyle='--')
     ax1.set_xticks(ev_counts)
@@ -83,7 +89,7 @@ def plot_combined_comparison(df):
                 markersize=7, label=pipeline, color=colors[pipeline])
     ax2.set_xlabel('Number of EVs', fontweight='bold')
     ax2.set_ylabel('Avg User Satisfaction', fontweight='bold')
-    ax2.set_title('Average User Satisfaction Comparison', fontweight='bold', pad=10)
+    ax2.set_title('Average User Satisfaction', fontweight='bold', pad=10)
     ax2.legend(fontsize=10)
     ax2.grid(True, alpha=0.3, linestyle='--')
     ax2.set_xticks(ev_counts)
@@ -96,7 +102,7 @@ def plot_combined_comparison(df):
                 markersize=7, label=pipeline, color=colors[pipeline])
     ax3.set_xlabel('Number of EVs', fontweight='bold')
     ax3.set_ylabel('Avg Waiting Time (hours)', fontweight='bold')
-    ax3.set_title('Average Waiting Time Comparison', fontweight='bold', pad=10)
+    ax3.set_title('Average Waiting Time', fontweight='bold', pad=10)
     ax3.legend(fontsize=10)
     ax3.grid(True, alpha=0.3, linestyle='--')
     ax3.set_xticks(ev_counts)
@@ -109,15 +115,42 @@ def plot_combined_comparison(df):
                 markersize=7, label=pipeline, color=colors[pipeline])
     ax4.set_xlabel('Number of EVs', fontweight='bold')
     ax4.set_ylabel('Gini Coefficient', fontweight='bold')
-    ax4.set_title('Fairness Comparison (Gini)', fontweight='bold', pad=10)
+    ax4.set_title('Fairness (Gini)', fontweight='bold', pad=10)
     ax4.legend(fontsize=10)
     ax4.grid(True, alpha=0.3, linestyle='--')
     ax4.set_xticks(ev_counts)
     
+    # Plot 5: Battery Degradation
+    for pipeline in pipelines:
+        pipeline_data = df[df['pipeline'] == pipeline].sort_values('ev_count')
+        values = pipeline_data['avg_deg_per_ev'].values
+        ax5.plot(ev_counts, values, marker=markers[pipeline], linewidth=2,
+                markersize=7, label=pipeline, color=colors[pipeline])
+    ax5.set_xlabel('Number of EVs', fontweight='bold')
+    ax5.set_ylabel('Avg Degradation Cost ($)', fontweight='bold')
+    ax5.set_title('Battery Degradation Cost', fontweight='bold', pad=10)
+    ax5.legend(fontsize=10)
+    ax5.grid(True, alpha=0.3, linestyle='--')
+    ax5.set_xticks(ev_counts)
+    
+    # Plot 6: Load Variance
+    for pipeline in pipelines:
+        pipeline_data = df[df['pipeline'] == pipeline].sort_values('ev_count')
+        values = pipeline_data['load_variance'].values
+        ax6.plot(ev_counts, values, marker=markers[pipeline], linewidth=2,
+                markersize=7, label=pipeline, color=colors[pipeline])
+    ax6.set_xlabel('Number of EVs', fontweight='bold')
+    ax6.set_ylabel('Grid Load Variance', fontweight='bold')
+    ax6.set_title('Grid Load Variance', fontweight='bold', pad=10)
+    ax6.legend(fontsize=10)
+    ax6.grid(True, alpha=0.3, linestyle='--')
+    ax6.set_xticks(ev_counts)
+    
     plt.suptitle('Pipeline Comparison Across All Metrics', fontsize=16, fontweight='bold', y=0.995)
     plt.tight_layout(rect=[0, 0, 1, 0.99])
-    plt.savefig('comparison_combined.png', dpi=150, bbox_inches='tight')
-    print(f"✓ Saved comparison_combined.png")
+    output_path = script_dir / 'comparison_combined.png'
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    print(f"✓ Saved {output_path}")
     plt.close()
 
 def print_winners(df):
@@ -130,9 +163,11 @@ def print_winners(df):
     
     metrics = {
         'avg_cost_per_ev': ('Energy Cost', True),
+        'avg_deg_per_ev': ('Battery Degradation', True),
         'avg_user_satisfaction_all': ('User Satisfaction', False),
         'avg_waiting_time_all': ('Waiting Time', True),
-        'gini_fairness': ('Fairness (Gini)', True)
+        'gini_fairness': ('Fairness (Gini)', True),
+        'load_variance': ('Load Variance', True)
     }
     
     for metric_col, (metric_name, lower_is_better) in metrics.items():
@@ -146,9 +181,12 @@ def print_winners(df):
             print(f"  {ev_count} EVs: {best['pipeline']:8s} ({best[metric_col]:.4f})")
 
 if __name__ == "__main__":
-    print("="*80)
+    print(f"{'='*80}")
     print("GENERATING PIPELINE COMPARISON PLOTS")
-    print("="*80)
+    print(f"{'='*80}")
+    
+    # Get script directory
+    script_dir = Path(__file__).parent
     
     df = load_results()
     if df is None:
@@ -163,28 +201,46 @@ if __name__ == "__main__":
                           'Average Cost per EV ($)', 
                           'Average Net Energy Cost Comparison',
                           'comparison_energy_cost.png',
+                          script_dir,
                           lower_is_better=True)
     
     plot_metric_comparison(df, 'avg_user_satisfaction_all',
                           'Average User Satisfaction',
                           'Average User Satisfaction Comparison',
                           'comparison_user_satisfaction.png',
+                          script_dir,
                           lower_is_better=False)
     
     plot_metric_comparison(df, 'avg_waiting_time_all',
                           'Average Waiting Time (hours)',
                           'Average Waiting Time Comparison',
                           'comparison_waiting_time.png',
+                          script_dir,
                           lower_is_better=True)
     
     plot_metric_comparison(df, 'gini_fairness',
                           'Gini Coefficient',
                           'Fairness Comparison (Lower = More Fair)',
                           'comparison_gini_fairness.png',
+                          script_dir,
+                          lower_is_better=True)
+    
+    plot_metric_comparison(df, 'avg_deg_per_ev',
+                          'Average Battery Degradation Cost per EV ($)',
+                          'Battery Degradation Cost Comparison',
+                          'comparison_battery_degradation.png',
+                          script_dir,
+                          lower_is_better=True)
+    
+    plot_metric_comparison(df, 'load_variance',
+                          'Grid Load Variance',
+                          'Grid Load Variance Comparison',
+                          'comparison_load_variance.png',
+                          script_dir,
                           lower_is_better=True)
     
     # Generate combined plot
-    plot_combined_comparison(df)
+    plot_combined_comparison(df, script_dir)
     
     # Print winners
     print_winners(df)

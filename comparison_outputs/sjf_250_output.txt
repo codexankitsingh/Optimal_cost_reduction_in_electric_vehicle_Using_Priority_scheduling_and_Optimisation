@@ -1,4 +1,4 @@
-Loaded 250 EVs from evs_250.csv
+Loaded 250 EVs from /Users/ankitkumarsingh/Desktop/MMTP/Optimal_cost_reduction_in_electric_vehicle_Using_Priority_scheduling_and_Optimisation/evs_250.csv
 === SJF Admission ===
 
 Total EVs: 250, Available chargers: 30

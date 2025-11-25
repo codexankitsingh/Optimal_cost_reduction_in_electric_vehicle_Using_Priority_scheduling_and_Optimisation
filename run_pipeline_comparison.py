@@ -5,6 +5,9 @@ import re
 import json
 from pathlib import Path
 
+# Get the directory where this script is located
+SCRIPT_DIR = Path(__file__).parent
+
 # Configuration
 EV_COUNTS = [50, 100, 150, 200, 250, 300]
 CHARGERS = 30
@@ -13,9 +16,9 @@ POP_SIZE = 100
 PYTHON_PATH = "/Users/ankitkumarsingh/Desktop/MMTP/.venv/bin/python"
 
 PIPELINES = {
-    'Priority': 'pipeline.py',
-    'FCFS': 'pipeline_fcfs.py',
-    'SJF': 'pipeline_sjf.py'
+    'Priority': SCRIPT_DIR / 'pipeline.py',
+    'FCFS': SCRIPT_DIR / 'pipeline_fcfs.py',
+    'SJF': SCRIPT_DIR / 'pipeline_sjf.py'
 }
 
 def extract_metrics_from_output(output):
@@ -28,6 +31,7 @@ def extract_metrics_from_output(output):
         'avg_waiting_time_admitted': None,
         'avg_waiting_time_all': None,
         'gini_fairness': None,
+        'load_variance': None,
         'final_J': None,
         'generations_executed': None
     }
@@ -76,6 +80,11 @@ def extract_metrics_from_output(output):
     if match:
         metrics['final_J'] = float(match.group(1))
     
+    # Extract grid load variance
+    match = re.search(r'Grid load variance \(raw F3\):\s*([\d.]+)', output)
+    if match:
+        metrics['load_variance'] = float(match.group(1))
+    
     # Extract generations executed
     match = re.search(r'Generations executed:\s*(\d+)', output)
     if match:
@@ -90,13 +99,21 @@ def run_pipeline(pipeline_name, pipeline_script, ev_count):
     print(f"{'='*60}")
     
     ev_file = f"evs_{ev_count}.csv"
-    if not os.path.exists(ev_file):
-        print(f"Error: {ev_file} not found!")
-        return None
-    
+    # Determine EV file path using script directory
+    ev_path = SCRIPT_DIR / ev_file
+    if not ev_path.is_file():
+        # Try default evs.csv in script directory
+        default_path = SCRIPT_DIR / 'evs.csv'
+        if default_path.is_file():
+            ev_path = default_path
+            print(f"Info: {ev_file} not found, using default {default_path}")
+        else:
+            print(f"Error: {ev_file} not found and no default evs.csv available!")
+            return None
+    # Use ev_path for the command
     cmd = [
-        PYTHON_PATH, pipeline_script,
-        "--ev-file", ev_file,
+        PYTHON_PATH, str(pipeline_script),
+        "--ev-file", str(ev_path),
         "--chargers", str(CHARGERS),
         "--ngen", str(NGEN),
         "--pop-size", str(POP_SIZE),
@@ -104,7 +121,7 @@ def run_pipeline(pipeline_name, pipeline_script, ev_count):
     ]
     
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True, cwd=str(SCRIPT_DIR))
         output = result.stdout + result.stderr
         
         # Extract metrics
@@ -113,10 +130,11 @@ def run_pipeline(pipeline_name, pipeline_script, ev_count):
         metrics['ev_count'] = ev_count
         
         # Save raw output for debugging
-        output_dir = Path("comparison_outputs")
+        # Create output directory if it doesn't exist
+        output_dir = SCRIPT_DIR / 'comparison_outputs'
         output_dir.mkdir(exist_ok=True)
-        output_file = output_dir / f"{pipeline_name.lower()}_{ev_count}_output.txt"
-        with open(output_file, 'w') as f:
+        output_file = output_dir / f'{pipeline_name}_{ev_count}_output.txt'
+        with open(str(output_file), 'w') as f:
             f.write(output)
         
         print(f"✓ Completed {pipeline_name} with {ev_count} EVs")
@@ -153,20 +171,24 @@ def save_results_to_csv(results):
     df = pd.DataFrame(results)
     
     # Save detailed results
-    df.to_csv('comparison_results.csv', index=False)
-    print(f"\n✓ Saved detailed results to comparison_results.csv")
+    results_path = SCRIPT_DIR / 'comparison_results.csv'
+    df.to_csv(results_path, index=False)
+    print(f"\n✓ Saved detailed results to {results_path}")
     
     # Create summary statistics
     summary = df.groupby(['pipeline', 'ev_count']).agg({
         'avg_cost_per_ev': 'mean',
+        'avg_deg_per_ev': 'mean',
         'avg_user_satisfaction_all': 'mean',
         'avg_waiting_time_all': 'mean',
         'gini_fairness': 'mean',
+        'load_variance': 'mean',
         'final_J': 'mean'
     }).reset_index()
     
-    summary.to_csv('comparison_summary.csv', index=False)
-    print(f"✓ Saved summary to comparison_summary.csv")
+    summary_path = SCRIPT_DIR / 'comparison_summary.csv'
+    summary.to_csv(summary_path, index=False)
+    print(f"✓ Saved summary to {summary_path}")
     
     # Print summary table
     print(f"\n{'='*80}")
