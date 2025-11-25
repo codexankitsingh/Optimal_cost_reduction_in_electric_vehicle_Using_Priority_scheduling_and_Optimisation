@@ -140,7 +140,7 @@ def plot_combined_comparison(df, script_dir):
         ax6.plot(ev_counts, values, marker=markers[pipeline], linewidth=2,
                 markersize=7, label=pipeline, color=colors[pipeline])
     ax6.set_xlabel('Number of EVs', fontweight='bold')
-    ax6.set_ylabel('Grid Load Variance', fontweight='bold')
+    ax6.set_ylabel('Grid Load Variance (kW²)', fontweight='bold')
     ax6.set_title('Grid Load Variance', fontweight='bold', pad=10)
     ax6.legend(fontsize=10)
     ax6.grid(True, alpha=0.3, linestyle='--')
@@ -233,7 +233,7 @@ if __name__ == "__main__":
                           lower_is_better=True)
     
     plot_metric_comparison(df, 'load_variance',
-                          'Grid Load Variance',
+                          'Grid Load Variance (kW²)',
                           'Grid Load Variance Comparison',
                           'comparison_load_variance.png',
                           script_dir,
