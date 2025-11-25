@@ -5,19 +5,23 @@ import subprocess
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
+
+# Get the directory where this script is located
+SCRIPT_DIR = Path(__file__).parent
 
 # Configuration
 EV_COUNTS = [50, 100, 150, 200, 250, 300]
 CHARGERS = 30
-NGEN = 200
+NGEN = 500
 POP_SIZE = 100
-EVS_SOURCE = 'evs.csv'
-PIPELINE_SCRIPT = 'pipeline.py'
-OUTPUT_PLOT = 'convergence_plot_ev_variations.png'
+EVS_SOURCE = SCRIPT_DIR / 'evs.csv'
+PIPELINE_SCRIPT = SCRIPT_DIR / 'pipeline.py'
+OUTPUT_PLOT = SCRIPT_DIR / 'convergence_plot_ev_variations.png'
 
 def load_source_evs(filepath):
     evs = []
-    with open(filepath, 'r') as f:
+    with open(str(filepath), 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
             evs.append(row)
@@ -39,7 +43,9 @@ def generate_ev_file(target_n, source_evs, filename):
         generated.append(src)
     
     keys = source_evs[0].keys()
-    with open(filename, 'w', newline='') as f:
+    # Save to file
+    output_path = SCRIPT_DIR / filename
+    with open(str(output_path), 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         writer.writerows(generated)
@@ -55,14 +61,14 @@ def run_experiment():
 
     for n in EV_COUNTS:
         # Force re-run to get fresh results with new data
-        history_file = f"ga_history_{n}.csv"
-        if os.path.exists(history_file):
-            os.remove(history_file)
+        history_file_specific = SCRIPT_DIR / f"ga_history_{n}.csv"
+        if history_file_specific.exists():
+            os.remove(history_file_specific)
 
         print(f"\n--- Running experiment for {n} EVs ---")
         # Use the pre-generated files
-        ev_file = f"evs_{n}.csv"
-        if not os.path.exists(ev_file):
+        ev_file = SCRIPT_DIR / f"evs_{n}.csv"
+        if not ev_file.exists():
             print(f"Error: {ev_file} not found. Run generate_ev_datasets.py first.")
             continue
 
@@ -72,8 +78,8 @@ def run_experiment():
         # Run pipeline.py
         # Using --ga-schedule-scope full to ensure GA sees all EVs (problem size scales with N)
         cmd = [
-            "/Users/ankitkumarsingh/Desktop/MMTP/.venv/bin/python", PIPELINE_SCRIPT,
-            "--ev-file", ev_file,
+            "/Users/ankitkumarsingh/Desktop/MMTP/.venv/bin/python", str(PIPELINE_SCRIPT),
+            "--ev-file", str(ev_file),
             "--chargers", str(CHARGERS),
             "--ngen", str(current_ngen),
             "--pop-size", str(POP_SIZE),
@@ -81,17 +87,21 @@ def run_experiment():
         ]
         
         try:
-            subprocess.run(cmd, check=True)
+            result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(SCRIPT_DIR), check=True)
         except subprocess.CalledProcessError as e:
             print(f"Error running pipeline for {n} EVs: {e}")
+            print(f"Stdout: {e.stdout}")
+            print(f"Stderr: {e.stderr}")
             continue
 
         # Read history
-        if os.path.exists("ga_history.csv"):
-            df = pd.read_csv("ga_history.csv")
+        # pipeline.py outputs ga_history.csv in its current working directory (SCRIPT_DIR)
+        pipeline_output_history_file = SCRIPT_DIR / "ga_history.csv"
+        if pipeline_output_history_file.exists():
+            df = pd.read_csv(pipeline_output_history_file)
             results[n] = df['best_J'].tolist()
             # Rename history file to keep it
-            os.rename("ga_history.csv", f"ga_history_{n}.csv")
+            os.rename(pipeline_output_history_file, history_file_specific)
         else:
             print(f"Warning: ga_history.csv not found for {n} EVs.")
 

@@ -1,18 +1,22 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from pathlib import Path
+
+# Get the directory where this script is located
+SCRIPT_DIR = Path(__file__).parent
 
 # Configuration
 EV_COUNTS = [50, 100, 150, 200, 250, 300]
 CHARGERS = 30
-OUTPUT_PLOT = 'convergence_plot_ev_variations.png'
+OUTPUT_PLOT = SCRIPT_DIR / 'convergence_plot_ev_variations.png'
 
 def plot_convergence():
     results = {}
     
     for n in EV_COUNTS:
-        history_file = f"ga_history_{n}.csv"
-        if os.path.exists(history_file):
+        history_file = SCRIPT_DIR / f"ga_history_{n}.csv"
+        if history_file.exists():
             print(f"Loading {history_file}...")
             df = pd.read_csv(history_file)
             # Ensure we have the best_J column
