@@ -82,7 +82,7 @@ We compared the three strategies across EV fleet sizes from 50 to 300.
 | **Fairness (Gini)** | **FCFS** | Treats all users equally based on arrival time. |
 
 ### Visual Comparison
-![Comparison Plot](comparison_combined.png)
+![Comparison Plot](Optimal_cost_reduction_in_electric_vehicle_Using_Priority_scheduling_and_Optimisation/comparison_combined.png)
 
 ---
 
