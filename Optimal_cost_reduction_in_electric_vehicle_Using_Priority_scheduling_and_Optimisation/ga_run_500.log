@@ -1,0 +1,183 @@
+Loaded 100 EVs from evs.csv
+
+=== Stage-I Time-Series Simulation ===
+Admitted at t=0: 30 EVs
+Waiting times computed for all 100 EVs
+Average waiting time (all EVs): 5.820 hours
+
+--- First admitted EVs (t=0) ---
+Count at t=0: 30
+First 30 admitted EV IDs: EV64, EV42, EV54, EV43, EV44, EV78, EV53, EV24, EV18, EV93, EV87, EV84, EV36, EV77, EV47, EV48, EV96, EV80, EV11, EV5, EV59, EV83, EV33, EV7, EV35, EV90, EV95, EV82, EV81, EV72
+
+--- Scheduling order (by first admit slot) ---
+EV5: first admitted at slot t=0
+EV7: first admitted at slot t=0
+EV11: first admitted at slot t=0
+EV18: first admitted at slot t=0
+EV24: first admitted at slot t=0
+EV33: first admitted at slot t=0
+EV35: first admitted at slot t=0
+EV36: first admitted at slot t=0
+EV42: first admitted at slot t=0
+EV43: first admitted at slot t=0
+EV44: first admitted at slot t=0
+EV47: first admitted at slot t=0
+EV48: first admitted at slot t=0
+EV53: first admitted at slot t=0
+EV54: first admitted at slot t=0
+EV59: first admitted at slot t=0
+EV64: first admitted at slot t=0
+EV72: first admitted at slot t=0
+EV77: first admitted at slot t=0
+EV78: first admitted at slot t=0
+EV80: first admitted at slot t=0
+EV81: first admitted at slot t=0
+EV82: first admitted at slot t=0
+EV83: first admitted at slot t=0
+EV84: first admitted at slot t=0
+EV87: first admitted at slot t=0
+EV90: first admitted at slot t=0
+EV93: first admitted at slot t=0
+EV95: first admitted at slot t=0
+EV96: first admitted at slot t=0
+EV3: first admitted at slot t=13
+EV62: first admitted at slot t=18
+EV38: first admitted at slot t=19
+EV97: first admitted at slot t=20
+EV55: first admitted at slot t=21
+EV75: first admitted at slot t=21
+EV25: first admitted at slot t=24
+EV28: first admitted at slot t=24
+EV45: first admitted at slot t=24
+EV76: first admitted at slot t=24
+EV41: first admitted at slot t=25
+EV63: first admitted at slot t=25
+EV65: first admitted at slot t=25
+EV4: first admitted at slot t=26
+EV70: first admitted at slot t=26
+EV51: first admitted at slot t=28
+EV6: first admitted at slot t=30
+EV34: first admitted at slot t=30
+EV23: first admitted at slot t=32
+EV31: first admitted at slot t=32
+EV32: first admitted at slot t=32
+EV61: first admitted at slot t=33
+EV99: first admitted at slot t=34
+EV2: first admitted at slot t=36
+EV26: first admitted at slot t=36
+EV98: first admitted at slot t=36
+EV27: first admitted at slot t=37
+EV40: first admitted at slot t=37
+EV91: first admitted at slot t=37
+EV94: first admitted at slot t=37
+EV46: first admitted at slot t=38
+EV85: first admitted at slot t=39
+EV49: first admitted at slot t=41
+EV10: first admitted at slot t=42
+EV20: first admitted at slot t=42
+EV21: first admitted at slot t=42
+EV39: first admitted at slot t=42
+EV22: first admitted at slot t=43
+EV29: first admitted at slot t=43
+EV58: first admitted at slot t=43
+EV12: first admitted at slot t=44
+EV57: first admitted at slot t=44
+EV60: first admitted at slot t=44
+EV71: first admitted at slot t=44
+EV1: NOT ADMITTED
+EV8: NOT ADMITTED
+EV9: NOT ADMITTED
+EV13: NOT ADMITTED
+EV14: NOT ADMITTED
+EV15: NOT ADMITTED
+EV16: NOT ADMITTED
+EV17: NOT ADMITTED
+EV19: NOT ADMITTED
+EV30: NOT ADMITTED
+EV37: NOT ADMITTED
+EV50: NOT ADMITTED
+EV52: NOT ADMITTED
+EV56: NOT ADMITTED
+EV66: NOT ADMITTED
+EV67: NOT ADMITTED
+EV68: NOT ADMITTED
+EV69: NOT ADMITTED
+EV73: NOT ADMITTED
+EV74: NOT ADMITTED
+EV79: NOT ADMITTED
+EV86: NOT ADMITTED
+EV88: NOT ADMITTED
+EV89: NOT ADMITTED
+EV92: NOT ADMITTED
+EV100: NOT ADMITTED
+
+--- GA Scheduling Scope: t0 (only EVs admitted at t=0) ---
+GA will schedule 30 EVs admitted at t=0
+GA start: pop_size=120, ngen=500, M=30, T=48
+Initial best J = -0.10268873
+Gen 1 best J -0.10268873 (mean: 11.00293911, std: 8.55954931, no improve: 1)
+Gen 5 best J -0.10268873 (mean: -0.10268372, std: 0.00001875, no improve: 5)
+Gen 10 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 10)
+Gen 15 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 15)
+Gen 20 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 20)
+Gen 25 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 25)
+Gen 30 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 30)
+Gen 35 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 35)
+Gen 40 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 40)
+Gen 45 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 45)
+Gen 50 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 50)
+Gen 55 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 55)
+Gen 60 best J -0.10268873 (mean: -0.10268873, std: 0.00000000, no improve: 60)
+Saved GA history to: /Users/ankitkumarsingh/Desktop/MTP_C 2/ga_history.csv
+
+=== GA Result Summary ===
+Objective J (normalized weighted): -0.10268872918596283
+F1 (cost, raw) : 153.70250000000013 F1_norm: 0.45836464595721726
+F2 (deg, raw): 12.296199999999963 F2_norm: 0.12834210086706352
+F3 (var, raw): 4854.13095606872 F3_norm: 0.002538336398534334
+F4 (satisfaction, raw): 29.999999999999993 F4_norm: 0.9999999999666664
+Penalties (raw): 0.0 Penalties_norm: 0.0
+Violations (SoC, occ, grid): 0.0 0.0 0.0
+Generations executed: 60
+
+--- Derived Metrics ---
+Average net energy cost per EV: 5.123416666666671
+Average battery degradation cost per EV: 0.4098733333333321
+Grid load variance (raw F3): 4854.13095606872
+Average user satisfaction: 0.9999999999999998
+Average waiting time (admitted EVs): 0.000 hours
+Average waiting time (all EVs in pool): 5.820 hours
+Fairness (Gini on delivered kWh): 0.1926589786546522
+Saved best_schedule_normalized.csv to: /Users/ankitkumarsingh/Desktop/MTP_C 2/best_schedule_normalized.csv
+
+--- Per-EV Diagnostics (scheduled) ---
+EV5: delivered=17.35 kWh, SoC_T=0.774, S_i=1.000
+EV7: delivered=21.90 kWh, SoC_T=0.950, S_i=1.000
+EV11: delivered=30.08 kWh, SoC_T=0.733, S_i=1.000
+EV18: delivered=16.04 kWh, SoC_T=0.766, S_i=1.000
+EV24: delivered=14.84 kWh, SoC_T=0.475, S_i=1.000
+EV33: delivered=15.80 kWh, SoC_T=0.831, S_i=1.000
+EV35: delivered=17.20 kWh, SoC_T=0.950, S_i=1.000
+EV36: delivered=18.81 kWh, SoC_T=0.449, S_i=1.000
+EV42: delivered=22.27 kWh, SoC_T=0.856, S_i=1.000
+EV43: delivered=23.22 kWh, SoC_T=0.376, S_i=1.000
+EV44: delivered=20.42 kWh, SoC_T=0.416, S_i=1.000
+EV47: delivered=11.13 kWh, SoC_T=0.745, S_i=1.000
+EV48: delivered=12.32 kWh, SoC_T=0.811, S_i=1.000
+EV53: delivered=26.98 kWh, SoC_T=0.768, S_i=1.000
+EV54: delivered=23.45 kWh, SoC_T=0.775, S_i=1.000
+EV59: delivered=30.59 kWh, SoC_T=0.602, S_i=1.000
+EV64: delivered=19.04 kWh, SoC_T=0.527, S_i=1.000
+EV72: delivered=28.56 kWh, SoC_T=0.529, S_i=1.000
+EV77: delivered=9.21 kWh, SoC_T=0.858, S_i=1.000
+EV78: delivered=12.24 kWh, SoC_T=0.409, S_i=1.000
+EV80: delivered=16.90 kWh, SoC_T=0.620, S_i=1.000
+EV81: delivered=23.98 kWh, SoC_T=0.779, S_i=1.000
+EV82: delivered=24.54 kWh, SoC_T=0.845, S_i=1.000
+EV83: delivered=13.65 kWh, SoC_T=0.723, S_i=1.000
+EV84: delivered=17.71 kWh, SoC_T=0.860, S_i=1.000
+EV87: delivered=34.25 kWh, SoC_T=0.692, S_i=1.000
+EV90: delivered=37.50 kWh, SoC_T=0.880, S_i=1.000
+EV93: delivered=9.92 kWh, SoC_T=0.429, S_i=1.000
+EV95: delivered=20.55 kWh, SoC_T=0.771, S_i=1.000
+EV96: delivered=24.37 kWh, SoC_T=0.866, S_i=1.000

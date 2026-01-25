@@ -1,0 +1,338 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\usepackage{amsmath}
+
+\title{Smart Scheduling of Electric Vehicle Charging: Balancing Cost and User Satisfaction}
+\author{Ankit Kumar Singh \\ 2021IMT-012 \\ Supervisor: Dr. Avadh Kishor}
+\institute{ABV–IIITM Gwalior}
+\date{\today}
+
+\begin{document}
+
+% Title
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Outline
+\begin{frame}{Outline}
+  \begin{enumerate}
+    \item Introduction
+    \item Background and Motivation
+    \item Literature Review
+    \item Research Gaps
+    \item Model Architecture
+    \item Methodology
+    \begin{itemize}
+        \item Priority Scheduling (Stage-I)
+        \item Optimization (Stage-II)
+    \end{itemize}
+    \item References
+  \end{enumerate}
+\end{frame}
+
+% Introduction
+\section{Introduction}
+\begin{frame}{Introduction}
+  \begin{itemize}
+    \item Rapid adoption of electric vehicles (EVs) is transforming transport and energy sectors.
+    \item Global EV sales have shown exponential growth, with projections indicating approximately 200 million EVs on roads by 2030. 
+    \item Uncoordinated EV charging can lead to grid load congestion, voltage instability, increased costs, and reduced reliability.
+    \item Smart charging and Vehicle-to-Grid (V2G) technologies offer grid support and cost saving opportunities.
+    \item \textbf{Challenge}: Develop an optimization framework for charging cost, grid stability, battery health, and user satisfaction.
+  \end{itemize}
+\end{frame}
+
+% Background & Motivation
+\section{Background and Motivation}
+\begin{frame}{Background}
+  \begin{itemize}
+    \item Global EV charging infrastructure expansion enables large-scale adoption.
+    \item EVs act as energy consumers and grid-supporting storage units.
+    \item Scheduling must address cost, user satisfaction, battery health, and grid constraints.
+    \item Environmental impact: reduces emissions, supports cleaner grids.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Motivation}
+  \begin{itemize}
+    \item Reduce operational costs using bidirectional charging (V2G \& G2V).
+    \item Extend battery lifespan by minimizing unnecessary cycling and degradation.
+    \item Enhance user satisfaction by meeting charging preferences.
+    \item Support grid stability and feasibility in real-world scenarios.
+  \end{itemize}
+\end{frame}
+
+% Literature Review
+\section{Literature Review}
+\begin{frame}{Literature Review: Methods}
+  \begin{itemize}
+    \item \textbf{Linear programming (LP)}: Effective for EV charging with linear objectives/constraints (e.g., TOU pricing).
+    \item \textbf{Dynamic programming (DP)}: Optimal for sequential decision-making but suffers from curse of dimensionality.
+    \item \textbf{Mixed Integer Linear Programming (MILP)}: Handles continuous/discrete variables; computationally intensive for large fleets.
+    \item \textbf{Metaheuristic algorithms}: GA, PSO, GSA are promising for non-convex optimization.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Literature Review: Key Factors}
+  \begin{itemize}
+    \item \textbf{Cost}: TOU pricing enables up to 75\% cost reduction by shifting load (Off-peak charging).
+    \item \textbf{Battery Health}: Degradation depends on Temperature, SoC, C-rate; optimized strategies extend life by ~25\%.
+    \item \textbf{User Satisfaction}: Modeled via utility functions (SoC at departure, deadline compliance).
+    \item \textbf{Fairness}: Resource allocation fairness measured by Coefficient of Variation (CV).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Literature Review Summary}
+  \footnotesize
+  \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+    \hline
+    \textbf{Author (Year)} & \textbf{Method} & \textbf{Pros} & \textbf{Gaps} \\
+    \hline
+    Bhaskar et al. (2024) & V2G/G2V Scheduling & Balances Cost/Aging & Scalability issues \\
+    \hline
+    Tan et al. (2023) & Multi-Agent + GA & Autonomous & Complexity \\
+    \hline
+    Pan et al. (2024) & Hybrid IGSAPSO & Efficient Balancing & Data intensive \\
+    \hline
+    Fernandes (2017) & On-Off Scheduling & Fast & No user comfort \\
+    \hline
+    Wu et al. (2022) & Online Greedy & Fast & Peak issues \\
+    \hline
+  \end{tabular}
+\end{frame}
+
+% Research Gaps
+\section{Research Gaps}
+\begin{frame}{Research Gaps}
+  \begin{itemize}
+    \item \textbf{Oversimplified Trade-offs}: Many studies decouple cost minimization from user satisfaction.
+    \item \textbf{Stochasticity}: Models often ignore real-time random arrivals and price fluctuations.
+    \item \textbf{Scalability}: Exact optimization methods struggle with large EV fleets.
+    \item \textbf{Holistic Approach}: Lack of frameworks jointly modeling Cost, User Satisfaction, Battery Health, and Grid Constraints.
+  \end{itemize}
+\end{frame}
+
+% Model Architecture
+\section{Model Architecture}
+\begin{frame}{System Model Architecture}
+  \centering
+  \resizebox{0.9\textwidth}{!}{
+  \begin{tikzpicture}[node distance=2cm, auto,
+    block/.style={rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em},
+    line/.style={draw, -latex', thick},
+    cloud/.style={draw, ellipse, fill=red!20, node distance=3cm, minimum height=2em}]
+    
+    % Nodes
+    \node [block] (evs) {EV Fleet (Random Arrivals)};
+    \node [block, right=1.5cm of evs] (data) {Data Acquisition (SoC, Time)};
+    \node [block, right=1.5cm of data] (stage1) {Stage 1: Priority Scheduling};
+    \node [block, below=1.5cm of stage1] (stage2) {Stage 2: GA Optimization};
+    \node [block, left=1.5cm of stage2] (control) {Charging Control};
+    \node [block, left=1.5cm of control] (grid) {Grid \& Chargers};
+
+    % Edges
+    \path [line] (evs) -- (data);
+    \path [line] (data) -- (stage1);
+    \path [line] (stage1) -- node[midway, right] {Admitted EVs} (stage2);
+    \path [line] (stage2) -- node[midway, above] {Optimal Schedule} (control);
+    \path [line] (control) -- (grid);
+    \path [line] (grid) -- node[midway, left] {Feedback} (evs);
+    
+    % Annotations
+    \node [below=0.2cm of stage1, font=\tiny] {Sort & Select};
+    \node [below=0.2cm of stage2, font=\tiny] {Minimize Cost/Degradation};
+  \end{tikzpicture}
+  }
+  \caption{Two-Stage Smart Scheduling Framework}
+\end{frame}
+
+% Methodology
+\section{Methodology}
+\begin{frame}{Methodology Overview}
+  We propose a \textbf{Two-Stage Hierarchical Approach}:
+  \vspace{0.5cm}
+  \begin{itemize}
+      \item \textbf{Stage I: Priority-Based Scheduling}
+      \begin{itemize}
+          \item Handles resource constraints (Limited Chargers vs. Many EVs).
+          \item Assigns priority based on Urgency, Degradation, Grid Stress, and Price.
+      \end{itemize}
+      \item \textbf{Stage II: Genetic Algorithm (GA) Optimization}
+      \begin{itemize}
+          \item Optimizes charging power profiles for admitted EVs.
+          \item Multi-objective: Cost, Battery Health, Grid Variance, Satisfaction.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Stage I: Priority Scheduling}
+\begin{frame}{Stage I: Priority Factors}
+  We calculate four normalized factors for each waiting EV $i$ to determine its charging priority. The factors are evaluated in the following order of influence:
+
+  \begin{enumerate}
+      \item \textbf{Price Factor ($P_i$)}: Incentivizes charging during low-price periods.
+      $$ P_i = \frac{\pi_{buy}(t) - \pi_{min}}{\pi_{max} - \pi_{min}} $$
+      \item \textbf{Degradation Cost Factor ($D_i$)}: Penalizes battery aging costs.
+      $$ D_i = \frac{(C_{deg} \cdot \Delta E_i) - D_{min}}{D_{max} - D_{min}} $$
+      \item \textbf{Grid Stress Factor ($G_i$)}: Penalizes charging when grid load is high.
+      $$ G_i = \max\left(0, \frac{\sum P_{req} - P_{avg}}{P_{max} - P_{avg}}\right) $$
+      \item \textbf{User Satisfaction / Urgency ($\phi_i$)}: Ensures deadline compliance.
+      $$ \phi_i = \min\left(1, \frac{P_{req,i}}{P_{ref}}\right), \quad \text{where } P_{req,i} = \frac{SoC_{max} - SoC_{curr}}{T_{remain}} \cdot E_{cap} $$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Stage I: Priority Score \& Admission}
+  The final \textbf{Priority Score ($\lambda_i$)} is calculated by aggregating these factors. A higher $\lambda_i$ implies higher priority for charger allocation.
+  
+  \begin{block}{Priority Function}
+  $$ \lambda_i = w_s \cdot \phi_i - w_p \cdot P_i - w_d \cdot D_i - w_g \cdot G_i $$
+  \end{block}
+
+  \textbf{Interpretation}:
+  \begin{itemize}
+      \item \textbf{Positive Term ($w_s \phi_i$)}: Increases priority for urgent EVs.
+      \item \textbf{Negative Terms}: Reduce priority if Price ($P_i$), Degradation ($D_i$), or Grid Stress ($G_i$) are high.
+  \end{itemize}
+
+  \textbf{Selection}: Sort EVs by $\lambda_i$ descending; the top $M$ EVs are admitted.
+\end{frame}
+
+\subsection{Stage II: Optimization}
+\begin{frame}{Stage II: GA Optimization Objective}
+  We minimize a multi-objective cost function $J$ for the admitted EVs:
+  
+  $$ \min J = w_1 F_1 + w_2 F_2 + w_3 F_3 - w_4 F_4 + \Omega_{penalty} $$
+  
+  \begin{itemize}
+      \item $F_1$: \textbf{Operational Cost} (Time-of-Use Energy Cost).
+      $$ F_1 = \sum_{t} \sum_{i} \left( \pi_{buy}(t) P_{ch}(i,t) + \pi_{rev}(t) P_{dis}(i,t) \right) \Delta t $$
+      \item $F_2$: \textbf{Battery Degradation Cost}.
+      $$ F_2 = \sum_{t} \sum_{i} c_{deg} |P(i,t)| \Delta t $$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Stage II: Optimization Objectives (Cont.)}
+  \begin{itemize}
+      \item $F_3$: \textbf{Grid Load Variance} (Peak Shaving).
+      $$ F_3 = \sum_{t} \left( L(t) - L_{avg} \right)^2, \quad L(t) = \sum_i P(i,t) $$
+      \item $F_4$: \textbf{User Satisfaction} (Maximize SoC).
+      $$ F_4 = \sum_{i} S_i, \quad S_i = \max\left(0, 1 - \phi_i \frac{SoC_{max} - SoC_{final,i}}{SoC_{max} - SoC_{init}}\right) $$
+      \item $\Omega_{penalty}$: Penalties for constraints violation (Power limits, Grid Capacity $P_{max}$, SoC limits).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Stage II: Evolutionary Process}
+  \textbf{Genetic Algorithm (GA) Configuration}:
+  \begin{itemize}
+      \item \textbf{Encoding}: Real-valued vector representing Power $P(i,t)$ for all admitted EVs and Time Slots.
+      \item \textbf{Crossover}: Blend Crossover (BLX-$\alpha$) or Two-Point Crossover.
+      \item \textbf{Mutation}: Gaussian Mutation to introduce small variations.
+      \item \textbf{Selection}: Tournament Selection.
+      \item \textbf{Repair Mechanism}: Heuristic repair to ensure $P_{min} \le P(i,t) \le P_{max}$ and stay within SoC bounds.
+  \end{itemize}
+\end{frame}
+
+% Results & Discussion
+\section{Results and Discussion}
+\begin{frame}{Performance Comparison (N=200 EVs)}
+  We compared the proposed \textbf{Priority-GA Framework} against a standard \textbf{First-Come-First-Serve (FCFS)} baseline.
+  
+  \begin{table}[]
+  \centering
+  \small
+  \begin{tabular}{|l|c|c|c|}
+  \hline
+  \textbf{Metric} & \textbf{FCFS (Baseline)} & \textbf{Proposed (Priority+GA)} & \textbf{Improvement} \\ \hline
+  \textbf{Avg. Cost (\$)} & 4.07 & \textbf{0.55} & \textbf{$\approx$ 86\%} \\ \hline
+  \textbf{Degradation} & 0.40 & \textbf{0.05} & \textbf{$\approx$ 87\%} \\ \hline
+  \textbf{Grid Variance} & 74,957 & \textbf{50,354} & \textbf{$\approx$ 33\%} \\ \hline
+  \textbf{Fairness (Gini)} & 0.23 & 0.84 & Trade-off \\ \hline
+  \end{tabular}
+  \caption{Performance Metrics Comparison}
+  \end{table}
+
+  \textbf{Key Observations}:
+  \begin{itemize}
+      \item \textbf{Cost}: Significant reduction due to optimal V2G utilization during peak/off-peak pricing.
+      \item \textbf{Battery Health}: Degradation score reduced by avoiding aggressive micro-cycles.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Discussion: Trade-offs}
+  \begin{itemize}
+      \item \textbf{Grid Stability}: The priority scheduling significantly smoothens the load profile (Lower Variance), reducing stress on the transformer.
+      \item \textbf{Fairness vs. Efficiency}: 
+      \begin{itemize}
+          \item FCFS treats all EVs equally (Low Gini) but ignores grid state.
+          \item Proposed method prioritizes Urgent/Critical EVs, leading to higher Gini index (inequality) but optimal system performance.
+      \end{itemize}
+      \item \textbf{User Satisfaction}: While overall satisfaction varies, critical demands (high urgency) are met first, ensuring reliability for those who need it most.
+  \end{itemize}
+\end{frame}
+\section{Results}
+\begin{frame}{Convergence Analysis}
+  \begin{itemize}
+      \item The Genetic Algorithm (GA) iteratively improves the charging schedule.
+      \item \textbf{Convergence}: Fitness value stabilizes after ~50 generations.
+      \item \textbf{Robustness}: Tested across varying EV fleet sizes (N=20 to N=100).
+  \end{itemize}
+  \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]{convergence_plot_ev_variations.png}
+      \caption{GA Convergence Profile for Different EV Fleet Sizes}
+  \end{figure}
+\end{frame}
+
+% Conclusion
+\section{Conclusion}
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item We developed a comprehensive \textbf{Two-Stage Smart Scheduling Framework}.
+    \item \textbf{Stage I}: Prioritizes EVs based on meaningful metrics (Urgency, Degradation, Grid Stress), ensuring fair access to limited chargers.
+    \item \textbf{Stage II}: Uses GA to optimize power profiles, successfully balancing:
+      \begin{itemize}
+        \item Minimizing Operational Costs (TOU).
+        \item Reducing Battery Degradation.
+        \item Improving Grid Stability (Variance).
+      \end{itemize}
+    \item The framework is scalable and adapts to real-world stochastic constraints.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Future Work}
+  \begin{itemize}
+      \item Integration of Renewable Energy Sources (Solar/Wind).
+      \item Modeling advanced uncertainty (Driver behavior, Traffic).
+      \item Deployment on edge computing devices for real-time control.
+  \end{itemize}
+\end{frame}
+
+% References
+\section{References}
+\begin{frame}{References}
+  \footnotesize
+  \begin{thebibliography}{99}
+    \bibitem{bhaskar2024} Bhaskar, A., et al., "Scheduling of Electric Vehicles Power in V2G and G2V Modes...", IEEE Trans. Smart Grid, 2024.
+    \bibitem{tan2023} Tan, M., et al., "Multi-Agent System for Electric Vehicle Charging Scheduling...", CSMS, 2023.
+    \bibitem{pan2024} Pan, K., et al., "Optimal Electric Vehicle Charge–Discharge Scheduling Using Hybrid IGSAPSO", IJEPES 2024.
+    \bibitem{fernandes2017} Fernandes, X., et al., "On-Off Scheduling Schemes...", 4OR-Q J Oper Res, 2017.
+    \bibitem{wu2022} Wu, W., et al., "Online EV Charge Scheduling", IEEE T-ITS, 2022.
+    \bibitem{nimalsiri2022} Nimalsiri, N., et al., "Load Curve Shaping...", IEEE T-ITS, 2022.
+  \end{thebibliography}
+\end{frame}
+
+\begin{frame}[plain]
+  \centering
+  \vspace{2cm}
+  {\Huge \textbf{Thank You}}
+  
+  \vspace{1cm}
+  \large Questions?
+\end{frame}
+
+\end{document}

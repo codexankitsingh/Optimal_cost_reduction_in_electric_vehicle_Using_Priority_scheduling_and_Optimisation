@@ -1,0 +1,173 @@
+Loaded 150 EVs from evs_150.csv
+
+=== Stage-I Time-Series Simulation ===
+Admitted at t=0: 0 EVs
+Waiting times computed for all 150 EVs
+Average waiting time (all EVs): 3.838 hours
+
+--- First admitted EVs (t=0) ---
+No EVs admitted at t=0
+
+--- Scheduling order (by first admit slot) ---
+EV27: first admitted at slot t=3
+EV12: first admitted at slot t=4
+EV86: first admitted at slot t=5
+EV4: first admitted at slot t=6
+EV141: first admitted at slot t=6
+EV44: first admitted at slot t=8
+EV101: first admitted at slot t=8
+EV105: first admitted at slot t=8
+EV112: first admitted at slot t=8
+EV131: first admitted at slot t=8
+EV139: first admitted at slot t=8
+EV80: first admitted at slot t=9
+EV113: first admitted at slot t=9
+EV116: first admitted at slot t=10
+EV33: first admitted at slot t=11
+EV98: first admitted at slot t=11
+EV22: first admitted at slot t=12
+EV24: first admitted at slot t=12
+EV40: first admitted at slot t=12
+EV74: first admitted at slot t=12
+EV79: first admitted at slot t=12
+EV133: first admitted at slot t=12
+EV135: first admitted at slot t=13
+EV11: first admitted at slot t=14
+EV15: first admitted at slot t=14
+EV49: first admitted at slot t=15
+EV52: first admitted at slot t=15
+EV92: first admitted at slot t=15
+EV128: first admitted at slot t=15
+EV142: first admitted at slot t=15
+EV1: NOT ADMITTED
+EV2: NOT ADMITTED
+EV3: NOT ADMITTED
+EV5: NOT ADMITTED
+EV6: NOT ADMITTED
+EV7: NOT ADMITTED
+EV8: NOT ADMITTED
+EV9: NOT ADMITTED
+EV10: NOT ADMITTED
+EV13: NOT ADMITTED
+EV14: NOT ADMITTED
+EV16: NOT ADMITTED
+EV17: NOT ADMITTED
+EV18: NOT ADMITTED
+EV19: NOT ADMITTED
+EV20: NOT ADMITTED
+EV21: NOT ADMITTED
+EV23: NOT ADMITTED
+EV25: NOT ADMITTED
+EV26: NOT ADMITTED
+EV28: NOT ADMITTED
+EV29: NOT ADMITTED
+EV30: NOT ADMITTED
+EV31: NOT ADMITTED
+EV32: NOT ADMITTED
+EV34: NOT ADMITTED
+EV35: NOT ADMITTED
+EV36: NOT ADMITTED
+EV37: NOT ADMITTED
+EV38: NOT ADMITTED
+EV39: NOT ADMITTED
+EV41: NOT ADMITTED
+EV42: NOT ADMITTED
+EV43: NOT ADMITTED
+EV45: NOT ADMITTED
+EV46: NOT ADMITTED
+EV47: NOT ADMITTED
+EV48: NOT ADMITTED
+EV50: NOT ADMITTED
+EV51: NOT ADMITTED
+EV53: NOT ADMITTED
+EV54: NOT ADMITTED
+EV55: NOT ADMITTED
+EV56: NOT ADMITTED
+EV57: NOT ADMITTED
+EV58: NOT ADMITTED
+EV59: NOT ADMITTED
+EV60: NOT ADMITTED
+EV61: NOT ADMITTED
+EV62: NOT ADMITTED
+EV63: NOT ADMITTED
+EV64: NOT ADMITTED
+EV65: NOT ADMITTED
+EV66: NOT ADMITTED
+EV67: NOT ADMITTED
+EV68: NOT ADMITTED
+EV69: NOT ADMITTED
+EV70: NOT ADMITTED
+EV71: NOT ADMITTED
+EV72: NOT ADMITTED
+EV73: NOT ADMITTED
+EV75: NOT ADMITTED
+EV76: NOT ADMITTED
+EV77: NOT ADMITTED
+EV78: NOT ADMITTED
+EV81: NOT ADMITTED
+EV82: NOT ADMITTED
+EV83: NOT ADMITTED
+EV84: NOT ADMITTED
+EV85: NOT ADMITTED
+EV87: NOT ADMITTED
+EV88: NOT ADMITTED
+EV89: NOT ADMITTED
+EV90: NOT ADMITTED
+EV91: NOT ADMITTED
+EV93: NOT ADMITTED
+EV94: NOT ADMITTED
+EV95: NOT ADMITTED
+EV96: NOT ADMITTED
+EV97: NOT ADMITTED
+EV99: NOT ADMITTED
+EV100: NOT ADMITTED
+EV102: NOT ADMITTED
+EV103: NOT ADMITTED
+EV104: NOT ADMITTED
+EV106: NOT ADMITTED
+EV107: NOT ADMITTED
+EV108: NOT ADMITTED
+EV109: NOT ADMITTED
+EV110: NOT ADMITTED
+EV111: NOT ADMITTED
+EV114: NOT ADMITTED
+EV115: NOT ADMITTED
+EV117: NOT ADMITTED
+EV118: NOT ADMITTED
+EV119: NOT ADMITTED
+EV120: NOT ADMITTED
+EV121: NOT ADMITTED
+EV122: NOT ADMITTED
+EV123: NOT ADMITTED
+EV124: NOT ADMITTED
+EV125: NOT ADMITTED
+EV126: NOT ADMITTED
+EV127: NOT ADMITTED
+EV129: NOT ADMITTED
+EV130: NOT ADMITTED
+EV132: NOT ADMITTED
+EV134: NOT ADMITTED
+EV136: NOT ADMITTED
+EV137: NOT ADMITTED
+EV138: NOT ADMITTED
+EV140: NOT ADMITTED
+EV143: NOT ADMITTED
+EV144: NOT ADMITTED
+EV145: NOT ADMITTED
+EV146: NOT ADMITTED
+EV147: NOT ADMITTED
+EV148: NOT ADMITTED
+EV149: NOT ADMITTED
+EV150: NOT ADMITTED
+
+--- GA Scheduling Scope: t0 (only EVs admitted at t=0) ---
+GA will schedule 0 EVs admitted at t=0
+Traceback (most recent call last):
+  File "/Users/ankitkumarsingh/Desktop/MTP_C 2/pipeline.py", line 1242, in <module>
+    main()
+  File "/Users/ankitkumarsingh/Desktop/MTP_C 2/pipeline.py", line 1152, in main
+    result = run_ga(evs=ga_evs_for_run, T=T, delta_t=delta_t,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ankitkumarsingh/Desktop/MTP_C 2/pipeline.py", line 724, in run_ga
+    raise ValueError("No admitted EVs passed to run_ga")
+ValueError: No admitted EVs passed to run_ga
