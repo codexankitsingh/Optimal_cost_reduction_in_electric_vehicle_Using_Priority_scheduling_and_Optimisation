@@ -136,4 +136,4 @@ python pipeline_sjf.py --ev-file evs_150.csv --chargers 30 --ngen 200
 4.  **Continuous Power:** Chargers can deliver any power value between $P_{min}$ and $P_{max}$.
 
 ## 📧 Contact
-For questions or contributions, please open an issue or contact the repository owner.
+For questions or contributions, please open an issue or contact at @ankitkumarsingh171819@gmail.com
