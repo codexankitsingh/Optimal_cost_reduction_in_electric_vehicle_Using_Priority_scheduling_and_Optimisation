@@ -36,7 +36,50 @@ The system simulates a workplace charging station where EVs arrive with differen
 ├── comparison_results.csv      # Metrics from all experiments
 ├── comparison_combined.png     # Summary plot of all metrics
 ├── evs_*.csv                   # Generated EV datasets (50-300 EVs)
+├── web-demo/                   # 🌐 Interactive React + FastAPI Web Application
 └── README.md                   # Project documentation
+```
+
+---
+
+## 🌐 Web Application (Interactive Demo)
+
+This repository includes a full-stack **Simulation Studio** for interactively running the scheduling algorithms, visualizing EV configurations, and analyzing cost-breakdown results dynamically.
+
+### Features
+*   **Interactive Simulation Studio:** Dynamically adjust parameters like `N` EVs, `M` Chargers, time horizons, and GA hyperparameters (Population, Generations, Weights).
+*   **Data Import/Generate:** Auto-generate randomized EV fleets or upload `.csv` profiles directly to test real-world scenarios.
+*   **Rich Visualizations:** View Heatmaps of power schedules, State-of-Charge (SoC) trends, Aggregate Grid Load against $P_{max}$, and weighted metric breakdowns (F1, F2, F3, F4).
+
+### Screenshots
+
+#### Simulation Studio Dashboard
+<img src="assets/screenshot_studio.png" width="800" alt="Simulation Studio Dashboard">
+
+#### Home Page & Algorithm Documentation
+<img src="assets/screenshot_home.png" width="800" alt="Simulation Studio Home Page">
+
+### Running the Web App Locally
+
+You can run the web application easily using **Docker Compose**:
+```bash
+cd web-demo
+docker-compose up --build
+```
+*   **Frontend (Simulator UI):** `http://localhost:5173`
+*   **Backend (API + Swagger Docs):** `http://localhost:8000/docs`
+
+Alternatively, you can run them manually:
+```bash
+# 1. Start Backend
+cd web-demo/backend
+pip install -r requirements.txt
+python server.py
+
+# 2. Start Frontend
+cd ../frontend
+npm install
+npm run dev
 ```
 
 ---
