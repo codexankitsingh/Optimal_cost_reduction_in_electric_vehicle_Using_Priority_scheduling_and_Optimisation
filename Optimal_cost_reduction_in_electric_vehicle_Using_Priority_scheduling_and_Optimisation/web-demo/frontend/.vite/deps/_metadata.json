@@ -2,7 +2,39 @@
   "hash": "7418019c",
   "configHash": "a1d6cf7e",
   "lockfileHash": "552e80bc",
-  "browserHash": "46071301",
-  "optimized": {},
-  "chunks": {}
+  "browserHash": "cd0649db",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "65b1ae63",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "a1542df8",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "fad30248",
+      "needsInterop": false
+    },
+    "react-plotly.js": {
+      "src": "../../node_modules/react-plotly.js/react-plotly.js",
+      "file": "react-plotly__js.js",
+      "fileHash": "fe0afee6",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-NOSD3EBE": {
+      "file": "chunk-NOSD3EBE.js"
+    },
+    "chunk-G4V7ITBN": {
+      "file": "chunk-G4V7ITBN.js"
+    }
+  }
 }
