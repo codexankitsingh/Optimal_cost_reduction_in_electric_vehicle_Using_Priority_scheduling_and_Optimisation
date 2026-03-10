@@ -1,0 +1,32 @@
+# EV Scheduling Web Demo — Docker Compose
+#
+# Usage:
+#   docker-compose up --build
+#   Frontend: http://localhost:5173
+#   Backend:  http://localhost:8000
+#   API Docs: http://localhost:8000/docs
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: web-demo/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../pipeline.py:/app/pipeline.py:ro
+      - ../pipeline_fcfs.py:/app/pipeline_fcfs.py:ro
+      - ../pipeline_sjf.py:/app/pipeline_sjf.py:ro
+      - ../generate_ev_datasets.py:/app/generate_ev_datasets.py:ro
+      - ../evs.csv:/app/evs.csv:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

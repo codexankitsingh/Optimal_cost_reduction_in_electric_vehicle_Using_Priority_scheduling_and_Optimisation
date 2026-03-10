@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy parent project files (algorithm modules)
+COPY pipeline.py pipeline_fcfs.py pipeline_sjf.py generate_ev_datasets.py ./
+COPY evs.csv ./
+
+# Copy backend
+COPY web-demo/backend/ ./web-demo/backend/
+
+# Install dependencies
+RUN pip install --no-cache-dir -r web-demo/backend/requirements.txt
+
+EXPOSE 8000
+
+CMD ["python", "-m", "uvicorn", "web-demo.backend.server:app", "--host", "0.0.0.0", "--port", "8000"]
